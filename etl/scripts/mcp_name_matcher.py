@@ -25,7 +25,7 @@ class NameMatcher:
         """Load Hurun and Forbes data from CSV files."""
         try:
             # Load Hurun data
-            hurun_path = Path("../intermediate/hurun/ddf--entities--person.csv")
+            hurun_path = Path(__file__).parent.parent / "intermediate/hurun/ddf--entities--person.csv"
             if hurun_path.exists():
                 self.hurun_data = pd.read_csv(hurun_path)
                 print(f"Loaded {len(self.hurun_data)} Hurun entries")
@@ -33,7 +33,7 @@ class NameMatcher:
                 print(f"Hurun data not found at {hurun_path}")
 
             # Load Forbes data
-            forbes_path = Path("../intermediate/forbes/ddf--entities--person.csv")
+            forbes_path = Path(__file__).parent.parent / "intermediate/forbes/ddf--entities--person.csv"
             if forbes_path.exists():
                 self.forbes_data = pd.read_csv(forbes_path)
                 print(f"Loaded {len(self.forbes_data)} Forbes entries")
@@ -49,13 +49,9 @@ class NameMatcher:
 
         try:
             if source == "hurun":
-                wealth_path = Path(
-                    "../intermediate/hurun/ddf--datapoints--wealth--by--person--year.csv"
-                )
+                wealth_path = Path(__file__).parent.parent / "intermediate/hurun/ddf--datapoints--wealth--by--person--year.csv"
             else:  # forbes
-                wealth_path = Path(
-                    "../intermediate/forbes/ddf--datapoints--worth--by--person--year.csv"
-                )
+                wealth_path = Path(__file__).parent.parent / "intermediate/forbes/ddf--datapoints--worth--by--person--year.csv"
 
             if wealth_path.exists():
                 wealth_df = pd.read_csv(wealth_path)
