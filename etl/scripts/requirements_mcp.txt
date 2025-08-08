@@ -1,4 +1,5 @@
-mcp
+fastapi
+uvicorn
 pandas
 fuzzywuzzy
 python-levenshtein

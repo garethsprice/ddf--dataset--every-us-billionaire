@@ -34,35 +34,70 @@ The goal of this project is to compile a comprehensive dataset of billionaires b
 
 ## Step 3: Merging the Lists
 
-### Phase 1: Building Fuzzy Query Tools
+### Embedding-Based Matching Workflow
 
-- **MCP Server for Name Matching:** Build an MCP (Model Context Protocol) server that provides fuzzy name matching capabilities for both Hurun and Forbes datasets. This server will:
-  - Accept search queries with person names
-  - Return ranked results from both Hurun and Forbes lists using fuzzy matching algorithms
-  - Provide standardized query interfaces that can be used by LLMs
-  - Handle variations in name formatting, transliterations, and partial matches
+Based on experimental results with embedding similarity and MCP tools, we have developed a simplified approach:
 
-### Phase 2: LLM-Assisted Matching Process
+### Stage 1: LLM-Assisted Automated Mapping
 
-- **Forbes-Based Matching Pipeline:** Using Forbes as the base dataset, develop a tool that uses LLMs to systematically process names:
-  1. For each person in the Hurun list, query the MCP server to find potential matches in both Hurun and Forbes data
-  2. Present query results to the LLM with context about the individuals
-  3. Let the LLM decide which query results represent the same person based on name similarity
-  4. Append all Forbes IDs that didn't get matched during this process
+**1.1 Candidate Generation via MCP Server**
+- **MCP Server:** We've built an MCP server that uses embedding similarity instead of simple fuzzy matching
+  - For each person in the Hurun list, query the MCP server using their comprehensive profile (name, country, company, birth year, industry, gender)
+  - The server returns ranked candidates from both Hurun and Forbes datasets based on semantic similarity
+  - Typical search returns top 10 candidates with similarity scores
 
-- **Output Format:** Generate a JSON file containing:
-  - Unified person IDs (following the slug-based naming convention described earlier)
-  - Mapped Hurun person IDs for each unified person (where matches exist)
-  - Mapped Forbes person IDs for each unified person
-  - All unmatched Forbes entries will be included as separate unified persons
+**1.2 LLM Reasoning for Match Decision**
+- Present the query person's profile and candidate matches to an LLM
+- The LLM analyzes all available information (demographics, business context, wealth patterns, name variations) to determine matches
+- LLM provides reasoning for each decision, handling complex cases like:
+  - Cross-language names (Ma Yun ↔ Jack Ma)
+  - Family vs individual entries ("& Family" suffixes)
+  - Transliteration variations
+  - Business evolution over time
 
-### Phase 3: Manual Review and Validation
+**1.3 Cluster Merging Logic**
+- Track all mapped IDs to prevent conflicts
+- If a new mapping includes IDs already present in previous mappings, merge the clusters automatically
+- This solves mutual matching cases (e.g., Ma Yun → Jack Ma and Jack Ma → Ma Yun both return similar candidates)
+- Maintain a graph structure where nodes are person IDs and edges represent "same person" relationships
 
-- **Identify Matches:** The automated process will handle the bulk of matching, with manual review for edge cases flagged by the LLM
-- **Resolve Discrepancies:** 
-  - For conflicting information (e.g., different citizenships, net worth values, or industries), prioritize based on source reliability or use averages/rules (e.g., list multiple citizenships if applicable)
-  - Handle cases where one list includes individuals not present in the other
-- **Create a Unified List:** Combine into a single dataset with unique global IDs, preserving source-specific data where relevant
+### Stage 2: Manual Review of Unmatched Entries
+
+**2.1 Identify Single-List Entries**
+- Extract all person IDs that appear only in Hurun or only in Forbes after Stage 1
+- These represent either:
+  - Genuinely unique individuals only covered by one source
+  - Missed matches due to data quality issues or extreme name variations
+
+**2.2 Manual Review Process**
+- Review unmatched entries with high wealth values or notable profiles
+- Use additional research (web search, news articles) to verify if they appear in the other dataset under different names
+- Flag ambiguous cases for further investigation
+
+### Findings from Experimental Results
+
+**Bidirectional Search Advantage:**
+- Our experiments showed that search direction matters (Forbes→Hurun worked better than Hurun→Forbes for Ma Yun/Jack Ma)
+- The workflow processes all entries to capture matches in both directions
+
+**Embedding Model Selection:**
+- Using `multi-qa-mpnet-base-dot-v1` based on performance testing
+- Creates comprehensive profiles including all available demographic and business information
+- Handles semantic similarity beyond simple name matching
+
+**Cross-Language Handling:**
+- Successfully tested with Ma Yun (Hurun) ↔ Jack Ma (Forbes) case
+- LLM reasoning helps bridge language gaps that pure embedding similarity might miss
+
+### Expected Outcomes
+
+Based on experimental validation:
+- **High-confidence matches:** Embedding similarity > 0.8 + same company → ~95% accuracy
+- **Cross-language cases:** Handled through LLM reasoning with context
+- **Complex cases:** Family relationships and name variations resolved through comprehensive profiling
+- **Coverage:** Expect 70-80% automatic matching, 20-30% requiring manual review
+
+This approach uses the findings from experimentation.
 
 ### Defining a Unified Unique ID
 
