@@ -1,5 +1,19 @@
+# MCP Server dependencies
+mcp
+
+# Data processing
+pandas
+numpy
+
+# Embedding and similarity
+sentence-transformers
+scikit-learn
+
+# Fuzzy string matching
+rapidfuzz
+
+# Legacy dependencies (if needed)
 fastapi
 uvicorn
-pandas
 fuzzywuzzy
 python-levenshtein

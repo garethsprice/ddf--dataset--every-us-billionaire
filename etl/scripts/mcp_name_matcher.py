@@ -12,6 +12,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 import pickle
 from sklearn.metrics.pairwise import cosine_similarity
+from rapidfuzz import fuzz, process
 import mcp.server.stdio
 import mcp.types as types
 from mcp.server import NotificationOptions, Server
@@ -32,7 +33,9 @@ class EmbeddingMatcher:
         """Load Hurun and Forbes data from CSV files."""
         try:
             # Load Hurun data
-            hurun_path = Path(__file__).parent.parent / "intermediate/hurun/ddf--entities--person.csv"
+            hurun_path = (
+                Path(__file__).parent.parent / "intermediate/hurun/ddf--entities--person.csv"
+            )
             if hurun_path.exists():
                 self.hurun_data = pd.read_csv(hurun_path).replace({np.nan: None})
                 print(f"Loaded {len(self.hurun_data)} Hurun entries")
@@ -40,7 +43,9 @@ class EmbeddingMatcher:
                 print(f"Hurun data not found at {hurun_path}")
 
             # Load Forbes data
-            forbes_path = Path(__file__).parent.parent / "intermediate/forbes/ddf--entities--person.csv"
+            forbes_path = (
+                Path(__file__).parent.parent / "intermediate/forbes/ddf--entities--person.csv"
+            )
             if forbes_path.exists():
                 self.forbes_data = pd.read_csv(forbes_path).replace({np.nan: None})
                 print(f"Loaded {len(self.forbes_data)} Forbes entries")
@@ -53,7 +58,9 @@ class EmbeddingMatcher:
     def load_embeddings(self):
         """Load pre-generated embeddings and metadata."""
         try:
-            embeddings_path = Path(__file__).parent.parent / "intermediate/embeddings/billionaire_embeddings.pkl"
+            embeddings_path = (
+                Path(__file__).parent.parent / "intermediate/embeddings/billionaire_embeddings.pkl"
+            )
             if embeddings_path.exists():
                 with open(embeddings_path, "rb") as f:
                     data = pickle.load(f)
@@ -71,9 +78,15 @@ class EmbeddingMatcher:
 
         try:
             if source == "hurun":
-                wealth_path = Path(__file__).parent.parent / "intermediate/hurun/ddf--datapoints--wealth--by--person--year.csv"
+                wealth_path = (
+                    Path(__file__).parent.parent
+                    / "intermediate/hurun/ddf--datapoints--wealth--by--person--year.csv"
+                )
             else:  # forbes
-                wealth_path = Path(__file__).parent.parent / "intermediate/forbes/ddf--datapoints--worth--by--person--year.csv"
+                wealth_path = (
+                    Path(__file__).parent.parent
+                    / "intermediate/forbes/ddf--datapoints--worth--by--person--year.csv"
+                )
 
             if wealth_path.exists():
                 wealth_df = pd.read_csv(wealth_path)
@@ -93,38 +106,58 @@ class EmbeddingMatcher:
 
         return wealth_data
 
-    def create_query_profile(self, name=None, country=None, company=None, birth_year=None, industry=None, gender=None):
-        """Create a query profile string from provided information."""
+    def create_query_profile(
+        self, name=None, country=None, company=None, birth_year=None, industry=None, gender=None
+    ):
+        """Create a standardized query profile string matching the embedding generation format."""
         profile_parts = []
 
-        if name:
-            profile_parts.append(f"Name: {name}")
+        # Always include all fields in the same order, using "n/a" for missing values
+
+        # Name
+        if name and pd.notna(name):
+            profile_parts.append(f"Billionaire Name: {name}")
         else:
-            profile_parts.append("Name: n/a")
-        if country:
+            profile_parts.append("Billionaire Name: n/a")
+
+        # Country
+        if country and pd.notna(country):
             profile_parts.append(f"Country: {country}")
         else:
             profile_parts.append("Country: n/a")
-        if company:
+
+        # Company
+        if company and pd.notna(company):
             profile_parts.append(f"Company: {company}")
         else:
             profile_parts.append("Company: n/a")
-        if birth_year:
-            profile_parts.append(f"Birth Year: {int(birth_year)}")
+
+        # Birth Year
+        if birth_year and pd.notna(birth_year):
+            try:
+                profile_parts.append(f"Birth Year: {int(birth_year)}")
+            except (ValueError, TypeError):
+                profile_parts.append("Birth Year: n/a")
         else:
             profile_parts.append("Birth Year: n/a")
-        if industry:
+
+        # Industry
+        if industry and pd.notna(industry):
             profile_parts.append(f"Industry: {industry}")
         else:
             profile_parts.append("Industry: n/a")
-        if gender:
+
+        # Gender
+        if gender and pd.notna(gender):
             profile_parts.append(f"Gender: {gender}")
         else:
             profile_parts.append("Gender: n/a")
 
         return " ".join(profile_parts)
 
-    def embedding_search(self, person_id: str, source: str, limit: int = 10) -> List[Dict[str, Any]]:
+    def embedding_search(
+        self, person_id: str, source: str, limit: int = 10
+    ) -> List[Dict[str, Any]]:
         """
         Search for similar billionaires using embedding similarity.
 
@@ -159,7 +192,7 @@ class EmbeddingMatcher:
             company=person_row.get("company"),
             birth_year=person_row.get("birth_year"),
             industry=person_row.get("industry"),
-            gender=person_row.get("gender")
+            gender=person_row.get("gender"),
         )
 
         # Generate query embedding
@@ -193,17 +226,119 @@ class EmbeddingMatcher:
             # Get wealth data
             wealth_data = self.get_wealth_data(match_person_id, match_source)
 
+            results.append(
+                {
+                    "source": match_source,
+                    "name": person_row.get("name", ""),
+                    "chinese_name": person_row.get("chinese_name", None),
+                    "person_id": match_person_id,
+                    "similarity_score": float(similarities[idx]),
+                    "birth_year": person_row.get("birth_year", None),
+                    "gender": person_row.get("gender", None),
+                    "country": person_row.get("country", None),
+                    "industry": person_row.get("industry", None),
+                    "company": person_row.get("company", None),
+                    "headquarter": person_row.get("headquarter", None),
+                    "title": person_row.get("title", None),
+                    "average_wealth": wealth_data["average_wealth"],
+                    "wealth_history": wealth_data["wealth_years"],
+                }
+            )
+
+        return results
+
+    def fuzzy_name_search(
+        self, name_query: str, source: str = None, limit: int = 10, min_score: int = 70
+    ) -> List[Dict[str, Any]]:
+        """
+        Search for billionaires by fuzzy matching their names.
+
+        Args:
+            name_query: The name to search for
+            source: Optional source filter ("hurun", "forbes", or None for both)
+            limit: Maximum number of results to return
+            min_score: Minimum fuzzy match score (0-100)
+
+        Returns:
+            List of matches with detailed information
+        """
+        all_candidates = []
+
+        # Collect candidates from Hurun
+        if source in [None, "hurun"] and self.hurun_data is not None:
+            for _, row in self.hurun_data.iterrows():
+                name = row.get("name", "")
+                chinese_name = row.get("chinese_name", "")
+                if pd.notna(name):
+                    all_candidates.append({
+                        "name": name,
+                        "chinese_name": chinese_name if pd.notna(chinese_name) else None,
+                        "person_id": row.get("person", ""),
+                        "source": "hurun",
+                        "row": row
+                    })
+
+        # Collect candidates from Forbes
+        if source in [None, "forbes"] and self.forbes_data is not None:
+            for _, row in self.forbes_data.iterrows():
+                name = row.get("name", "")
+                if pd.notna(name):
+                    all_candidates.append({
+                        "name": name,
+                        "chinese_name": None,
+                        "person_id": row.get("person", ""),
+                        "source": "forbes",
+                        "row": row
+                    })
+
+        # Perform fuzzy matching
+        matches = []
+        for candidate in all_candidates:
+            # Match against English name
+            name_score = fuzz.WRatio(name_query.lower(), candidate["name"].lower())
+
+            # Also match against Chinese name if available
+            chinese_score = 0
+            if candidate["chinese_name"]:
+                chinese_score = fuzz.ratio(name_query, candidate["chinese_name"])
+
+            # Use the higher score
+            final_score = max(name_score, chinese_score)
+
+            if final_score >= min_score:
+                matches.append({
+                    "candidate": candidate,
+                    "score": final_score
+                })
+
+        # Sort by score (descending) and limit results
+        matches.sort(key=lambda x: x["score"], reverse=True)
+        matches = matches[:limit]
+
+        # Format results
+        results = []
+        for match in matches:
+            candidate = match["candidate"]
+            row = candidate["row"]
+            person_id = candidate["person_id"]
+            source = candidate["source"]
+
+            # Get wealth data
+            wealth_data = self.get_wealth_data(person_id, source)
+
             results.append({
-                "source": match_source,
-                "name": person_row.get("name", ""),
-                "person_id": match_person_id,
-                "similarity_score": float(similarities[idx]),
-                "birth_year": person_row.get("birth_year", None),
-                "gender": person_row.get("gender", None),
-                "country": person_row.get("country", None),
-                "industry": person_row.get("industry", None),
-                "company": person_row.get("company", None),
-                "title": person_row.get("title", None),
+                "source": source,
+                "name": row.get("name", ""),
+                "chinese_name": row.get("chinese_name", None),
+                "person_id": person_id,
+                "fuzzy_score": match["score"],
+                "birth_year": row.get("birth_year", None),
+                "gender": row.get("gender", None),
+                "country": row.get("country", None),
+                "industry": row.get("industry", None),
+                "company": row.get("company", None),
+                "headquarter": row.get("headquarter", None),
+                "title": row.get("title", None),
                 "average_wealth": wealth_data["average_wealth"],
                 "wealth_history": wealth_data["wealth_years"],
             })
@@ -228,8 +363,11 @@ async def handle_list_tools() -> List[types.Tool]:
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "person_id": {"type": "string", "description": "The person ID to search for"},
-                    "list": {"type": "string", "description": "The source dataset: either 'hurun' or 'forbes'"},
+                    "person_id": {"type": "string", "description": "The person ID to search for. (must be lowercase alphanumeric, connect with underscore)"},
+                    "list": {
+                        "type": "string",
+                        "description": "The source dataset: either 'hurun' or 'forbes'",
+                    },
                     "limit": {
                         "type": "integer",
                         "description": "Total number of results to return (default: 10)",
@@ -237,6 +375,34 @@ async def handle_list_tools() -> List[types.Tool]:
                     },
                 },
                 "required": ["person_id", "list"],
+            },
+        ),
+        types.Tool(
+            name="fuzzy_name_search",
+            description="Search for billionaires by name using fuzzy string matching. Can search in English names and Chinese names (for Hurun data). Returns matches sorted by similarity score.",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string", "description": "The name to search for (can be partial or slightly misspelled)"},
+                    "list": {
+                        "type": "string",
+                        "description": "Optional source filter: 'hurun', 'forbes', or omit for both",
+                        "enum": ["hurun", "forbes"],
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Maximum number of results to return (default: 10)",
+                        "default": 10,
+                    },
+                    "min_score": {
+                        "type": "integer",
+                        "description": "Minimum fuzzy match score 0-100 (default: 70)",
+                        "default": 70,
+                        "minimum": 0,
+                        "maximum": 100,
+                    },
+                },
+                "required": ["name"],
             },
         )
     ]
@@ -254,7 +420,11 @@ async def handle_call_tool(name: str, arguments: dict) -> List[types.TextContent
             return [types.TextContent(type="text", text="Error: person_id parameter is required")]
 
         if source not in ["hurun", "forbes"]:
-            return [types.TextContent(type="text", text="Error: list parameter must be either 'hurun' or 'forbes'")]
+            return [
+                types.TextContent(
+                    type="text", text="Error: list parameter must be either 'hurun' or 'forbes'"
+                )
+            ]
 
         try:
             results = embedding_matcher.embedding_search(person_id, source, limit)
@@ -264,13 +434,46 @@ async def handle_call_tool(name: str, arguments: dict) -> List[types.TextContent
                 "query_person_id": person_id,
                 "query_source": source,
                 "matches": results,
-                "total_matches": len(results)
+                "total_matches": len(results),
             }
 
             return [types.TextContent(type="text", text=json.dumps(response, indent=2))]
 
         except Exception as e:
             return [types.TextContent(type="text", text=f"Error performing search: {str(e)}")]
+
+    elif name == "fuzzy_name_search":
+        name_query = arguments.get("name", "")
+        source = arguments.get("list", None)
+        limit = arguments.get("limit", 10)
+        min_score = arguments.get("min_score", 70)
+
+        if not name_query:
+            return [types.TextContent(type="text", text="Error: name parameter is required")]
+
+        if source and source not in ["hurun", "forbes"]:
+            return [
+                types.TextContent(
+                    type="text", text="Error: list parameter must be either 'hurun', 'forbes', or omitted"
+                )
+            ]
+
+        try:
+            results = embedding_matcher.fuzzy_name_search(name_query, source, limit, min_score)
+
+            # Format results as JSON
+            response = {
+                "query_name": name_query,
+                "source_filter": source,
+                "min_score": min_score,
+                "matches": results,
+                "total_matches": len(results),
+            }
+
+            return [types.TextContent(type="text", text=json.dumps(response, indent=2))]
+
+        except Exception as e:
+            return [types.TextContent(type="text", text=f"Error performing fuzzy search: {str(e)}")]
 
     else:
         return [types.TextContent(type="text", text=f"Unknown tool: {name}")]

@@ -22,7 +22,7 @@ The goal of this project is to compile a comprehensive dataset of billionaires b
 
 - **No Unique IDs:** The Hurun lists do not provide inherent unique identifiers for individuals. We will generate these programmatically, similar to the general approach, using a hash or combination of stable attributes like full name, birth year, and other available details.
 
-- **Format Differences Across Years:** 
+- **Format Differences Across Years:**
   - Data from 2019-2025 follows a consistent format.
   - Pre-2019 data uses a different format and often lacks country information for individuals. To address this, we will impute missing country data where possible by cross-referencing with later Hurun entries, Forbes data, or using LLMs to infer based on other attributes (e.g., name origins or known residences). If imputation is unreliable, flag these entries for manual review.
 
@@ -54,6 +54,11 @@ Based on experimental results with embedding similarity and MCP tools, we have d
   - Family vs individual entries ("& Family" suffixes)
   - Transliteration variations
   - Business evolution over time
+
+### Name Handling Rules for Matching
+
+- **Family/Brothers terms**: Treat names that include family/group indicators as the same person as the version without those terms for identity resolution during matching. Examples include suffixes or qualifiers like "Family", "& Family", "Brothers". Example: "Ma Yun Family" is considered the same as "Ma Yun". But if only the last name was mentioned (such as "Hinduja Brothers"), a careful review is required to determine which person it refers to by comparing the wealth history.
+- **Multi-person compound names**: Names that clearly refer to multiple individuals joined by connectors like "and", "&", or "+" are treated as group entities and are not considered the same as any one individual in the name. Example: "Manohar Lal and Madhusudan Agarwal" is different from "Madhusudan Agarwal" and "Manohar Lal Agarwal".
 
 **1.3 Cluster Merging Logic**
 - Track all mapped IDs to prevent conflicts

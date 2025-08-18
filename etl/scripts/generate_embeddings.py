@@ -44,35 +44,49 @@ class EmbeddingGenerator:
             print(f"Error loading data: {e}")
 
     def create_profile(self, row, source):
-        """Create a comprehensive profile string for a billionaire."""
+        """Create a standardized profile string for a billionaire matching the query profile format."""
         profile_parts = []
 
-        # Basic information
-        profile_parts.append(f"Billionaire Name: {row.get('name', '')}")
-        if source == "hurun" and "chinese_name" in row and pd.notna(row["chinese_name"]):
-            profile_parts.append(f"Chinese Name: {row['chinese_name']}")
-        if "last_name" in row and pd.notna(row["last_name"]):
-            profile_parts.append(f"Last Name: {row['last_name']}")
-        if "age" in row and pd.notna(row["age"]):
-            profile_parts.append(f"Age: {int(row['age'])}")
-        if "birth_year" in row and pd.notna(row["birth_year"]):
-            profile_parts.append(f"Birth Year: {int(row['birth_year'])}")
-        if "gender" in row and pd.notna(row["gender"]):
-            profile_parts.append(f"Gender: {row['gender']}")
+        # Always include all fields in the same order as query profile, using "n/a" for missing values
+
+        # Name
+        if "name" in row and pd.notna(row["name"]):
+            profile_parts.append(f"Billionaire Name: {row['name']}")
+        else:
+            profile_parts.append("Billionaire Name: n/a")
+
+        # Country
         if "country" in row and pd.notna(row["country"]):
             profile_parts.append(f"Country: {row['country']}")
+        else:
+            profile_parts.append("Country: n/a")
 
-        # Professional information
-        if "industry" in row and pd.notna(row["industry"]):
-            profile_parts.append(f"Industry: {row['industry']}")
+        # Company
         if "company" in row and pd.notna(row["company"]):
             profile_parts.append(f"Company: {row['company']}")
-        if source == "hurun" and "headquarter" in row and pd.notna(row["headquarter"]):
-            profile_parts.append(f"Headquarter: {row['headquarter']}")
-        if source == "forbes" and "title" in row and pd.notna(row["title"]):
-            profile_parts.append(f"Title: {row['title']}")
+        else:
+            profile_parts.append("Company: n/a")
 
-        return "\n".join(profile_parts)
+        # Birth Year
+        if "birth_year" in row and pd.notna(row["birth_year"]):
+            profile_parts.append(f"Birth Year: {int(row['birth_year'])}")
+        else:
+            profile_parts.append("Birth Year: n/a")
+
+        # Industry
+        if "industry" in row and pd.notna(row["industry"]):
+            profile_parts.append(f"Industry: {row['industry']}")
+        else:
+            profile_parts.append("Industry: n/a")
+
+        # Gender
+        if "gender" in row and pd.notna(row["gender"]):
+            profile_parts.append(f"Gender: {row['gender']}")
+        else:
+            profile_parts.append("Gender: n/a")
+
+        # Join with spaces to match query profile format
+        return " ".join(profile_parts)
 
     def generate_embeddings(self):
         """Generate embeddings for all billionaire profiles."""
