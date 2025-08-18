@@ -7,6 +7,15 @@ import datetime
 # change it when new data comes.
 reference_date = datetime.datetime(2025, 4, 1)
 
+# Function to convert gender from M/F to Male/Female
+def convert_gender(gender):
+    if gender == 'M':
+        return 'Male'
+    elif gender == 'F':
+        return 'Female'
+    else:
+        return gender
+
 
 def transform_forbes_data(source_dir, output_dir):
     if not os.path.exists(output_dir):
@@ -60,7 +69,7 @@ def transform_forbes_data(source_dir, output_dir):
                 "last_name": row.get("lastName", ""),
                 "age": row.get("age", ""),
                 "birth_year": birth_year,
-                "gender": row.get("gender", ""),
+                "gender": convert_gender(row.get("gender", "")),
                 "country": row.get("country", ""),
                 "source": row.get("source", ""),
                 "industry": row.get("industry", ""),
