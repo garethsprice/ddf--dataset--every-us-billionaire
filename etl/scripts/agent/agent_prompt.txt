@@ -1,0 +1,84 @@
+# Core Task
+You are working on a task to merge 2 billionaire lists - Hurun and Forbes, by assigning a unified ID for each person from both lists.
+
+For each person ID provided, search for that person in both the Hurun and Forbes lists. Your goal is to identify when different entries refer to the same individual across both lists. If the person is only in one of the lists, you should also assign a unified ID for the person.
+
+Finally use the tools available to create a mapping between unified IDs and IDs from both lists (or just one of the lists).
+
+## Name Handling Rules for Matching
+
+### Family/Brothers Terms
+Treat names that include family/group indicators as the same person as the version without those terms for identity resolution during matching. Examples include suffixes or qualifiers like "Family", "& Family", "Brothers".
+- Example: "Ma Yun Family" is considered the same as "Ma Yun"
+- Example: "Zong Qinghou Family" is considered the same as "Zong Qinghou"
+
+#### Exceptions
+But if the first name is absent, such as "Kinoshita Family" where only the family name is provided, we can not assign the name to any individual, so in such cases we should consider the name to be multi-person compound names (also see below) and make the ID a separate entity.
+
+### Multi-person Compound Names
+Names that clearly refer to multiple individuals joined by connectors like "and", "&", or "+" are treated as group entities and are NOT considered the same as any one individual in the name.
+- Example: "Manohar Lal and Madhusudan Agarwal" is different from "Madhusudan Agarwal" and "Manohar Lal Agarwal"
+- These should be treated as separate group entities
+
+### Cross-language Names
+Be aware of cross-language name variations:
+- Example: "Ma Yun" (Hurun) ↔ "Jack Ma" (Forbes)
+- Use the embedding similarity and context to identify these matches
+
+## Unified ID Generation Rules
+
+The unified ID should follow these rules:
+1. Generate a "slug" from the person's name by:
+   - Converting the name to lowercase
+   - Replacing spaces and special characters with underscores (_)
+   - Remove the family/brothers terms
+   - Examples: "Elon Musk" becomes elon_musk; "Wessels Family" becomes wessels
+2. When people have same name, use digits as suffix. For example: first Elon Musk's id is elon_musk, second is elon_musk_2
+
+## Matching Strategy
+
+### High-Confidence Matches
+- Look for embedding similarity scores > 0.9 combined with matching company/industry information
+- These typically have ~95% accuracy and can be confidently mapped
+
+The person ID might change over time so there might be multiple IDs for the same person in one list. You should map all related IDs to the unified ID.
+
+### Cross-Language Cases
+- Use LLM reasoning to bridge language gaps that pure embedding similarity might miss
+- identify possible alternative names from embedding search results
+- use Fuzzy matching tool to find similar names
+- Consider additional context like company, industry, and wealth patterns
+
+### Complex Cases
+- Handle family relationships and name variations through comprehensive profiling
+- Use all available demographic and business information to make decisions
+
+## Available Tools
+
+### Query Tool
+- Use the billionaire query tool to search for persons in both lists
+- the tool supports 2 modes: search by profile and search by name
+- The tool returns ranked candidates with similarity scores
+
+### Mapping Tools
+- Use get_mappings() to retrieve current mappings for all or specific unified ID.
+- Use insert_mapping() to add new mappings and update reverse mappings. Note that if you need to map multiple names to the same unified ID, call insert_mapping() multiple times, each time providing one ID to map.
+- Use delete_mapping() to remove a mapping and all associated reverse mappings.
+
+## Decision Making
+
+Consider all available information when making match decisions. You should use both embedding search and fuzzy name search to include all possible candidates. The factors below are sorted by importance:
+- Name variations and transliterations
+- Company and industry information
+- Country and citizenship data
+- Birth year and demographics
+- Wealth patterns and rankings
+- Historical consistency across years
+
+But you should be aware that hurun and forbes publish data at different times, with different data sources, so it's possible that the info for same person might be slightly different in different lists.
+
+Before you insert mapping, use get_mappings() to check if a unified ID already exists. If it does, you should review the existing mapping and decide whether to update it or create a new unified ID with a suffix.
+
+insert_mapping() will check if the id already mapped to another person. If so, it will response an error message and you should review the existing and new mapping once more. Use delete_mapping() when you are sure that the existing mapping is incorrect.
+
+When in doubt, err on the side of not creating a mapping rather than creating an incorrect one. Ambiguous cases can be reviewed manually later. For such cases, output the reason for the ambiguity in your final output, and end it with single line "Manual Review Required".
