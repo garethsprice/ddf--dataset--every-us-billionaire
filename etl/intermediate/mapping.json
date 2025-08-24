@@ -202,7 +202,7 @@
   {
     "unified_person_id": "li_hongjing",
     "hurun_ids": ["li_hongjing"],
-    "forbes_ids": ["li_hongjing"]
+    "forbes_ids": ["li_hongjing", "hongjing_li"]
   },
   {
     "unified_person_id": "subhash_chandra",
@@ -263,11 +263,6 @@
     "unified_person_id": "gopichand_hinduja",
     "hurun_ids": ["gopichand_parmanand_hinduja", "gopichand_hinduja"],
     "forbes_ids": []
-  },
-  {
-    "unified_person_id": "henry_sy",
-    "hurun_ids": ["henry_sy_family"],
-    "forbes_ids": ["henry_sy"]
   },
   {
     "unified_person_id": "nusli_wadia",
@@ -791,7 +786,7 @@
   },
   {
     "unified_person_id": "tsai_hong_tu",
-    "hurun_ids": ["tsai_hong_tu"],
+    "hurun_ids": ["tsai_hong_tu_brothers", "tsai_hong_tu"],
     "forbes_ids": ["tsai_hong_tu"]
   },
   {
@@ -1061,8 +1056,8 @@
   },
   {
     "unified_person_id": "bachtiar_karim",
-    "hurun_ids": ["bachtiar_karim"],
-    "forbes_ids": ["bachtiar_karim_1"]
+    "forbes_ids": ["bachtiar_karim", "bachtiar_karim_1"],
+    "hurun_ids": ["bachtiar_karim"]
   },
   {
     "unified_person_id": "margarita_louis_dreyfus",
@@ -1332,7 +1327,7 @@
   {
     "unified_person_id": "stewart_lynda_resnick",
     "hurun_ids": ["stewart_lynda_resnick"],
-    "forbes_ids": ["stewart_lynda_resnick"]
+    "forbes_ids": ["stewart_and_lynda_resnick", "stewart_lynda_resnick"]
   },
   {
     "unified_person_id": "andrei_guriev",
@@ -1517,7 +1512,7 @@
   {
     "unified_person_id": "lai_jianping",
     "hurun_ids": ["lai_jianping"],
-    "forbes_ids": ["lai_jianping"]
+    "forbes_ids": ["lai_jianping", "jianping_lai"]
   },
   {
     "unified_person_id": "alberto_palatchi",
@@ -1555,9 +1550,9 @@
     "forbes_ids": ["noam_gottesman"]
   },
   {
-    "unified_person_id": "adam_kwok",
-    "hurun_ids": ["adam_kwok_kai_fai"],
-    "forbes_ids": ["adam_kwok"]
+    "unified_person_id": "adam_neumann",
+    "hurun_ids": ["adam_neuman", "adam_neumann"],
+    "forbes_ids": ["adam_neumann"]
   },
   {
     "unified_person_id": "ye_delin",
@@ -1676,7 +1671,12 @@
   },
   {
     "unified_person_id": "li_ping",
-    "hurun_ids": ["li_ping_2", "li_ping"],
+    "hurun_ids": ["li_ping"],
+    "forbes_ids": []
+  },
+  {
+    "unified_person_id": "li_ping_2",
+    "hurun_ids": ["li_ping_2"],
     "forbes_ids": ["li_ping_1"]
   },
   {
@@ -1752,7 +1752,7 @@
   {
     "unified_person_id": "huang_shanbing",
     "hurun_ids": ["huang_shanbing"],
-    "forbes_ids": ["huang_shanbing"]
+    "forbes_ids": ["huang_shanbing", "shanbing_huang"]
   },
   {
     "unified_person_id": "mary_vy_ty",
@@ -1781,8 +1781,18 @@
   },
   {
     "unified_person_id": "pan_shiyi_zhang_xin",
-    "hurun_ids": ["pan_shiyi_zhang_xin", "pan_shiyi", "zhang_xin_2"],
-    "forbes_ids": ["pan_shiyi", "zhang_xin"]
+    "hurun_ids": ["pan_shiyi_zhang_xin"],
+    "forbes_ids": []
+  },
+  {
+    "unified_person_id": "pan_shiyi",
+    "hurun_ids": ["pan_shiyi"],
+    "forbes_ids": ["pan_shiyi"]
+  },
+  {
+    "unified_person_id": "zhang_xin_2",
+    "hurun_ids": ["zhang_xin_2"],
+    "forbes_ids": ["zhang_xin"]
   },
   {
     "unified_person_id": "joe_lewis",
@@ -2179,7 +2189,7 @@
   },
   {
     "unified_person_id": "pansy_ho",
-    "hurun_ids": ["pansy_ho_chiu_king"],
+    "hurun_ids": ["pansy_ho", "pansy_ho_chiu_king"],
     "forbes_ids": ["pansy_ho"]
   },
   {
@@ -2315,7 +2325,7 @@
   {
     "unified_person_id": "ni_zugen",
     "hurun_ids": ["ni_zugen"],
-    "forbes_ids": ["ni_zugen"]
+    "forbes_ids": ["ni_zugen", "zugen_ni"]
   },
   {
     "unified_person_id": "jeffrey_hildebrand",
@@ -2605,7 +2615,7 @@
   {
     "unified_person_id": "li_liufa",
     "hurun_ids": ["li_liufa"],
-    "forbes_ids": ["liufa_li"]
+    "forbes_ids": ["liufa_li", "li_liufa"]
   },
   {
     "unified_person_id": "sara_george_muthoot",
@@ -2835,12 +2845,12 @@
   {
     "unified_person_id": "karen_virginia_beckmann_legorretta",
     "hurun_ids": ["karen_virginia_beckmann_legorretta"],
-    "forbes_ids": ["karen_virginia_beckmann_legorretta"]
+    "forbes_ids": ["karen_virginia_beckmann_legoretta"]
   },
   {
-    "unified_person_id": "jonathan_burrell",
-    "hurun_ids": ["jonathan_c_burrell"],
-    "forbes_ids": []
+    "unified_person_id": "acharya_balakrishna",
+    "hurun_ids": ["acharya_balakrishna", "acharya_balkrishna"],
+    "forbes_ids": ["acharya_balkrishna"]
   },
   {
     "unified_person_id": "mat_ishbia",
@@ -2849,7 +2859,7 @@
   },
   {
     "unified_person_id": "serge_dassault",
-    "hurun_ids": ["serge_dassault_family"],
+    "hurun_ids": ["serge_dassault", "serge_dassault_family"],
     "forbes_ids": ["serge_dassault"]
   },
   {
@@ -3328,11 +3338,6 @@
     "forbes_ids": []
   },
   {
-    "unified_person_id": "bom_kim",
-    "hurun_ids": ["bom_suk_kim"],
-    "forbes_ids": ["bom_kim"]
-  },
-  {
     "unified_person_id": "liu_xianbing",
     "hurun_ids": ["liu_xianbing"],
     "forbes_ids": []
@@ -3365,7 +3370,7 @@
   {
     "unified_person_id": "tang_xiuguo",
     "hurun_ids": ["tang_xiuguo"],
-    "forbes_ids": ["tang_xiuguo"]
+    "forbes_ids": ["tang_xiuguo", "xiuguo_tang"]
   },
   {
     "unified_person_id": "matthias_reimann_andersen",
@@ -3526,11 +3531,6 @@
     "unified_person_id": "wang_ren_sheng",
     "hurun_ids": [],
     "forbes_ids": ["wang_ren_sheng"]
-  },
-  {
-    "unified_person_id": "madhusudan_agarwal",
-    "hurun_ids": ["madhusudan_agarwal"],
-    "forbes_ids": ["madhusudan_agarwal"]
   },
   {
     "unified_person_id": "alessandro_rosano",
@@ -3778,11 +3778,6 @@
     "forbes_ids": []
   },
   {
-    "unified_person_id": "dhanin_chearavanont",
-    "hurun_ids": ["dhanin_chearavanont"],
-    "forbes_ids": ["dhanin_chearavanont"]
-  },
-  {
     "unified_person_id": "ricardo_martin_bringas",
     "hurun_ids": ["ricardo_martin_bringas"],
     "forbes_ids": []
@@ -3981,11 +3976,6 @@
     "unified_person_id": "mahima_datla",
     "hurun_ids": ["mahima_datla"],
     "forbes_ids": ["mahima_datla"]
-  },
-  {
-    "unified_person_id": "juan_domingo_beckmann_legorreta",
-    "hurun_ids": ["juan_domingo_beckmann_legorreta"],
-    "forbes_ids": ["juan_domingo_beckmann_legorreta"]
   },
   {
     "unified_person_id": "glen_taylor",
@@ -4303,9 +4293,9 @@
     "forbes_ids": ["yu_xuefeng"]
   },
   {
-    "unified_person_id": "heinrich_deichmann",
-    "hurun_ids": ["heinrich_deichmann"],
-    "forbes_ids": ["heinrich_deichmann"]
+    "unified_person_id": "heinrich_otto_deichmann",
+    "forbes_ids": ["heinrich_otto_deichmann", "heinrich_deichmann"],
+    "hurun_ids": ["heinrich_deichmann"]
   },
   {
     "unified_person_id": "huang_maoru",
@@ -4633,11 +4623,6 @@
     "forbes_ids": []
   },
   {
-    "unified_person_id": "juergen_blickle",
-    "hurun_ids": ["jurgen_blickle"],
-    "forbes_ids": ["juergen_blickle"]
-  },
-  {
     "unified_person_id": "john_caudwell",
     "hurun_ids": ["john_caudwell"],
     "forbes_ids": ["john_caudwell"]
@@ -4671,11 +4656,6 @@
     "unified_person_id": "bob_ell",
     "hurun_ids": ["bob_ell"],
     "forbes_ids": ["bob_ell"]
-  },
-  {
-    "unified_person_id": "henry_cheng",
-    "hurun_ids": ["henry_cheng"],
-    "forbes_ids": ["henry_cheng_1"]
   },
   {
     "unified_person_id": "jaime_zobel_de_ayala",
@@ -5473,11 +5453,6 @@
     "forbes_ids": ["carrie_perrodo"]
   },
   {
-    "unified_person_id": "eduardo_belmont_anderson",
-    "hurun_ids": ["eduardo_belmont"],
-    "forbes_ids": ["eduardo_belmont_anderson"]
-  },
-  {
     "unified_person_id": "takaya_awata",
     "hurun_ids": ["takaya_awata"],
     "forbes_ids": ["takaya_awata"]
@@ -5855,7 +5830,7 @@
   {
     "unified_person_id": "liang_guangwei",
     "hurun_ids": ["liang_guangwei"],
-    "forbes_ids": ["liang_guangwei"]
+    "forbes_ids": ["liang_guangwei", "guangwei_liang"]
   },
   {
     "unified_person_id": "nie_tengyun_chen_liying",
@@ -6590,7 +6565,7 @@
   {
     "unified_person_id": "huang_chulong",
     "hurun_ids": ["huang_chulong"],
-    "forbes_ids": ["huang_chulong"]
+    "forbes_ids": ["huang_chulong", "chulong_huang"]
   },
   {
     "unified_person_id": "gregorio_perez_companc",
@@ -6694,7 +6669,7 @@
   },
   {
     "unified_person_id": "sun_hongbin",
-    "hurun_ids": ["sun_hongbin"],
+    "hurun_ids": ["sun_hongbing", "sun_hongbin"],
     "forbes_ids": ["sun_hongbin"]
   },
   {
@@ -7051,11 +7026,6 @@
     "unified_person_id": "andrew_beal",
     "hurun_ids": ["andrew_beal"],
     "forbes_ids": ["andrew_beal"]
-  },
-  {
-    "unified_person_id": "hu_bofan",
-    "hurun_ids": ["hu_bofan"],
-    "forbes_ids": []
   },
   {
     "unified_person_id": "j_tomilson_hill",
@@ -7429,7 +7399,7 @@
   },
   {
     "unified_person_id": "rupert_murdoch",
-    "hurun_ids": ["rupert_murdoch_family"],
+    "hurun_ids": ["rupert_murdoch", "rupert_murdoch_family"],
     "forbes_ids": ["rupert_murdoch"]
   },
   {
@@ -7780,7 +7750,7 @@
   {
     "unified_person_id": "song_zuowen",
     "hurun_ids": ["song_zuowen"],
-    "forbes_ids": ["song_zuowen"]
+    "forbes_ids": ["song_zuowen", "zuowen_song"]
   },
   {
     "unified_person_id": "pvn_raju",
@@ -7903,13 +7873,13 @@
     "forbes_ids": []
   },
   {
-    "unified_person_id": "lin_yu_ling",
-    "hurun_ids": [],
-    "forbes_ids": ["lin_yu_ling"]
+    "unified_person_id": "zhang_jin_2",
+    "hurun_ids": ["zhang_jin_2"],
+    "forbes_ids": []
   },
   {
-    "unified_person_id": "zhang_jin_2",
-    "hurun_ids": ["zhang_jin_2", "zhang_jin_4"],
+    "unified_person_id": "zhang_jin_4",
+    "hurun_ids": ["zhang_jin_4"],
     "forbes_ids": []
   },
   {
@@ -8075,6 +8045,16 @@
   {
     "unified_person_id": "zhou_huasong",
     "hurun_ids": ["zhou_huasong"],
+    "forbes_ids": []
+  },
+  {
+    "unified_person_id": "michael_rainer_schmidt_ruthenbeck",
+    "hurun_ids": ["michael_rainer_schmidt_ruthenbeck"],
+    "forbes_ids": ["michael_reiner_schmidt_ruthenbeck"]
+  },
+  {
+    "unified_person_id": "michael_schmidt_ruthenbeck",
+    "hurun_ids": ["michael_schmidt_ruthenbeck"],
     "forbes_ids": []
   },
   {
@@ -8469,7 +8449,7 @@
   },
   {
     "unified_person_id": "kuan_kam_hon",
-    "hurun_ids": ["kuan_kam_hon"],
+    "hurun_ids": ["kuan_kam_hon", "kuon_kam_hon"],
     "forbes_ids": ["kuan_kam_hon"]
   },
   {
@@ -8575,7 +8555,7 @@
   {
     "unified_person_id": "jiang_yintai",
     "hurun_ids": ["jiang_yintai"],
-    "forbes_ids": ["jiang_yintai"]
+    "forbes_ids": ["jiang_yintai", "yintai_jiang"]
   },
   {
     "unified_person_id": "jiang_weiping",
@@ -8835,7 +8815,7 @@
   {
     "unified_person_id": "mehmet_sinan_tara",
     "hurun_ids": ["mehmet_sinan_tara"],
-    "forbes_ids": ["mehmet_sinan_tara"]
+    "forbes_ids": ["mehmet_sinan_family_tara", "mehmet_sinan_tara"]
   },
   {
     "unified_person_id": "teruyo_yanai",
@@ -9004,7 +8984,7 @@
   },
   {
     "unified_person_id": "li_li_2",
-    "hurun_ids": [],
+    "hurun_ids": ["li_li_2"],
     "forbes_ids": ["li_li_3"]
   },
   {
@@ -9119,7 +9099,12 @@
   },
   {
     "unified_person_id": "james_d_slavik",
-    "hurun_ids": ["james_d_slavik_2", "james_d_slavik"],
+    "hurun_ids": ["james_d_slavik"],
+    "forbes_ids": []
+  },
+  {
+    "unified_person_id": "james_d_slavik_2",
+    "hurun_ids": ["james_d_slavik_2"],
     "forbes_ids": []
   },
   {
@@ -9129,7 +9114,7 @@
   },
   {
     "unified_person_id": "robert_coyiuto_jr",
-    "hurun_ids": ["robert_coyiuto_jr"],
+    "hurun_ids": ["robert_coyuito_jr", "robert_coyiuto_jr"],
     "forbes_ids": ["robert_coyiuto_jr"]
   },
   {
@@ -10328,8 +10313,8 @@
     "forbes_ids": ["luiza_helena_trajano"]
   },
   {
-    "unified_person_id": "smita_crishna",
-    "hurun_ids": ["smita_v_crishna"],
+    "unified_person_id": "smita_crishna_godrej",
+    "hurun_ids": ["smitha_v_crishna", "smita_v_crishna"],
     "forbes_ids": ["smita_crishna_godrej"]
   },
   {
@@ -10445,7 +10430,7 @@
   {
     "unified_person_id": "zhang_xinghai",
     "hurun_ids": ["zhang_xinghai"],
-    "forbes_ids": ["zhang_xinghai"]
+    "forbes_ids": ["zhang_xinghai", "xinghai_zhang"]
   },
   {
     "unified_person_id": "stephen_cohen",
@@ -10750,7 +10735,7 @@
   {
     "unified_person_id": "wu_kai",
     "hurun_ids": ["wu_kai"],
-    "forbes_ids": ["wu_kai"]
+    "forbes_ids": ["wu_kai", "kai_wu"]
   },
   {
     "unified_person_id": "jiang_guiting",
@@ -10990,7 +10975,7 @@
   {
     "unified_person_id": "li_xuhui",
     "hurun_ids": ["li_xuhui"],
-    "forbes_ids": ["li_xuhui"]
+    "forbes_ids": ["li_xuhui", "xuhui_li"]
   },
   {
     "unified_person_id": "hui_lin_chit",
@@ -11285,7 +11270,7 @@
   {
     "unified_person_id": "wang_xicheng",
     "hurun_ids": ["wang_xicheng"],
-    "forbes_ids": ["xicheng_wang"]
+    "forbes_ids": ["xicheng_wang", "wang_xicheng"]
   },
   {
     "unified_person_id": "quek_leng_chan",
@@ -11309,8 +11294,13 @@
   },
   {
     "unified_person_id": "zhou_jian",
-    "hurun_ids": ["zhou_jian_4", "zhou_jian_2", "zhou_jian_3"],
-    "forbes_ids": ["zhou_jian_1", "zhou_jian_3"]
+    "hurun_ids": ["zhou_jian", "zhou_jian_2", "zhou_jian_3"],
+    "forbes_ids": ["zhou_jian_1"]
+  },
+  {
+    "unified_person_id": "zhou_jian_2",
+    "hurun_ids": ["zhou_jian_4"],
+    "forbes_ids": ["zhou_jian_3"]
   },
   {
     "unified_person_id": "david_thomson",
@@ -11538,11 +11528,6 @@
     "forbes_ids": []
   },
   {
-    "unified_person_id": "kim_beom_soo",
-    "hurun_ids": ["kim_beom_soo"],
-    "forbes_ids": ["kim_beom_su"]
-  },
-  {
     "unified_person_id": "niti_osathanugrah",
     "hurun_ids": ["niti_osathanugrah"],
     "forbes_ids": ["niti_osathanugrah"]
@@ -11604,13 +11589,18 @@
   },
   {
     "unified_person_id": "tung_chee_chen",
-    "hurun_ids": ["tung_chee_chen", "chee_chen_tung"],
+    "hurun_ids": ["tung_chee_chen"],
     "forbes_ids": ["tung_chee_chen"]
+  },
+  {
+    "unified_person_id": "chee_chen_tung",
+    "hurun_ids": ["chee_chen_tung"],
+    "forbes_ids": []
   },
   {
     "unified_person_id": "yang_tingdong",
     "hurun_ids": ["yang_tingdong"],
-    "forbes_ids": ["yang_tingdong"]
+    "forbes_ids": ["yang_tingdong", "tingdong_yang"]
   },
   {
     "unified_person_id": "richard_schulze",
@@ -12363,7 +12353,7 @@
   {
     "unified_person_id": "ye_chenghai",
     "hurun_ids": ["ye_chenghai"],
-    "forbes_ids": ["chenghai_ye"]
+    "forbes_ids": ["chenghai_ye", "ye_chenghai"]
   },
   {
     "unified_person_id": "christoph_zeller",
@@ -13438,7 +13428,7 @@
   {
     "unified_person_id": "qi_jinxing",
     "hurun_ids": ["qi_jinxing"],
-    "forbes_ids": ["qi_jinxing"]
+    "forbes_ids": ["qi_jinxing", "jinxing_qi"]
   },
   {
     "unified_person_id": "donna_macmillan",
@@ -13853,7 +13843,7 @@
   {
     "unified_person_id": "robert_miller_2",
     "hurun_ids": ["robert_miller_2"],
-    "forbes_ids": ["robert_miller", "robert_miller_1"]
+    "forbes_ids": ["robert_miller"]
   },
   {
     "unified_person_id": "mahendra_prasad",
@@ -13938,12 +13928,12 @@
   {
     "unified_person_id": "jeff_t_green",
     "hurun_ids": ["jeff_green"],
-    "forbes_ids": ["jeff_t_green"]
+    "forbes_ids": ["jeff_t_green", "jeff_green"]
   },
   {
     "unified_person_id": "shi_yonghong",
     "hurun_ids": ["shi_yonghong"],
-    "forbes_ids": ["shi_yonghong"]
+    "forbes_ids": ["shi_yonghong", "yonghong_shi"]
   },
   {
     "unified_person_id": "richard_sands",
@@ -14873,7 +14863,7 @@
   {
     "unified_person_id": "xie_liangzhi",
     "hurun_ids": ["xie_liangzhi"],
-    "forbes_ids": ["liangzhi_xie"]
+    "forbes_ids": ["liangzhi_xie", "xie_liangzhi"]
   },
   {
     "unified_person_id": "abdulla_al_futtaim",
@@ -15053,7 +15043,7 @@
   {
     "unified_person_id": "shao_genhuo",
     "hurun_ids": ["shao_genhuo"],
-    "forbes_ids": ["shao_genhuo"]
+    "forbes_ids": ["shao_genhuo", "genhuo_shao"]
   },
   {
     "unified_person_id": "jorge_horacio_brito",
@@ -15312,7 +15302,7 @@
   },
   {
     "unified_person_id": "yang_erzhu",
-    "hurun_ids": ["yang_erzhu"],
+    "hurun_ids": ["yang_er_zhu", "yang_erzhu"],
     "forbes_ids": ["yang_erzhu"]
   },
   {
@@ -15554,11 +15544,6 @@
     "unified_person_id": "yokyu_kanazawa",
     "hurun_ids": ["yokyu_kanazawa"],
     "forbes_ids": []
-  },
-  {
-    "unified_person_id": "luiz_frias",
-    "hurun_ids": ["luiz_frias"],
-    "forbes_ids": ["luiz_frias"]
   },
   {
     "unified_person_id": "sun_pingfan",
@@ -16216,15 +16201,6 @@
     "forbes_ids": []
   },
   {
-    "unified_person_id": "leonardo_del_vecchio",
-    "hurun_ids": [
-      "leonardo_del_vecchio_4",
-      "leonardo_del_vecchio_3",
-      "leonardo_del_vecchio_2"
-    ],
-    "forbes_ids": ["leonardo_del_vecchio"]
-  },
-  {
     "unified_person_id": "pu_zhongjie",
     "hurun_ids": ["pu_zhongjie"],
     "forbes_ids": ["pu_zhongjie"]
@@ -16232,7 +16208,7 @@
   {
     "unified_person_id": "ren_jinsheng",
     "hurun_ids": ["ren_jinsheng"],
-    "forbes_ids": ["ren_jinsheng"]
+    "forbes_ids": ["ren_jinsheng", "jinsheng_ren"]
   },
   {
     "unified_person_id": "anna_kasprzak",
@@ -16396,7 +16372,7 @@
   },
   {
     "unified_person_id": "prathap_reddy",
-    "hurun_ids": ["pratap_reddy"],
+    "hurun_ids": ["prathap_reddy", "pratap_reddy"],
     "forbes_ids": ["prathap_reddy"]
   },
   {
@@ -16426,7 +16402,7 @@
   },
   {
     "unified_person_id": "maritsa_lazari",
-    "hurun_ids": ["maritsa_lazari"],
+    "hurun_ids": ["martisa_lazari", "maritsa_lazari"],
     "forbes_ids": ["maritsa_lazari"]
   },
   {
@@ -16521,11 +16497,6 @@
     "unified_person_id": "soichiro_minami",
     "hurun_ids": [],
     "forbes_ids": ["soichiro_minami"]
-  },
-  {
-    "unified_person_id": "juan_cuneo_solari",
-    "hurun_ids": ["juan_cuneo_solari"],
-    "forbes_ids": ["juan_cuneo_solari_family"]
   },
   {
     "unified_person_id": "ashish_ashwin_choksi",
@@ -16755,7 +16726,7 @@
   {
     "unified_person_id": "guo_guangchang",
     "hurun_ids": ["guo_guangchang"],
-    "forbes_ids": ["guo_guangchang"]
+    "forbes_ids": ["guo_guangchang", "guangchang_guo"]
   },
   {
     "unified_person_id": "jean_madar",
@@ -17515,7 +17486,7 @@
   {
     "unified_person_id": "wu_guangming",
     "hurun_ids": ["wu_guangming"],
-    "forbes_ids": ["wu_guangming"]
+    "forbes_ids": ["wu_guangming", "guangming_wu"]
   },
   {
     "unified_person_id": "dermot_desmond",
@@ -18083,11 +18054,6 @@
     "forbes_ids": ["pavel_golubkov"]
   },
   {
-    "unified_person_id": "michael_schmidt_ruthenbeck",
-    "hurun_ids": ["michael_schmidt_ruthenbeck"],
-    "forbes_ids": ["michael_reiner_schmidt_ruthenbeck"]
-  },
-  {
     "unified_person_id": "zameer_choudrey",
     "hurun_ids": ["zameer_choudrey"],
     "forbes_ids": []
@@ -18421,11 +18387,6 @@
     "unified_person_id": "bill_cummings",
     "hurun_ids": [],
     "forbes_ids": ["bill_cummings"]
-  },
-  {
-    "unified_person_id": "jose_isaac_peres",
-    "hurun_ids": ["jose_isaac_peres"],
-    "forbes_ids": ["jose_isaac_peres"]
   },
   {
     "unified_person_id": "konstantin_grigorishin",
@@ -19374,7 +19335,7 @@
   },
   {
     "unified_person_id": "massimo_moratti",
-    "hurun_ids": ["massimo_moratti"],
+    "hurun_ids": ["massimo_moratty", "massimo_moratti"],
     "forbes_ids": ["massimo_moratti"]
   },
   {
@@ -19506,11 +19467,6 @@
     "unified_person_id": "chan_laiwa",
     "hurun_ids": [],
     "forbes_ids": ["chan_laiwa"]
-  },
-  {
-    "unified_person_id": "elaine_marshall",
-    "hurun_ids": ["elaine_marshall"],
-    "forbes_ids": ["elaine_marshall"]
   },
   {
     "unified_person_id": "herbert_allen_jr",
@@ -19938,9 +19894,9 @@
     "forbes_ids": ["ivan_muller_botelho"]
   },
   {
-    "unified_person_id": "william_lei_ding",
+    "unified_person_id": "william_ding",
     "hurun_ids": ["ding_lei"],
-    "forbes_ids": ["william_lei_ding"]
+    "forbes_ids": ["william_ding", "william_lei_ding"]
   },
   {
     "unified_person_id": "ty_warner",
@@ -20875,7 +20831,7 @@
   {
     "unified_person_id": "nguyen_thi_phuong_thao",
     "hurun_ids": ["nguyen_thi_phuong_thao"],
-    "forbes_ids": ["nguyen_thi_phuong_thao"]
+    "forbes_ids": ["thi_phuong_thao_nguyen", "nguyen_thi_phuong_thao"]
   },
   {
     "unified_person_id": "wang_chou_hsiong",
@@ -21186,11 +21142,6 @@
     "unified_person_id": "hu_jinsheng",
     "hurun_ids": ["hu_jinsheng"],
     "forbes_ids": []
-  },
-  {
-    "unified_person_id": "wolfgang_leitner",
-    "hurun_ids": ["wolfgang_leitner"],
-    "forbes_ids": ["wolfgang_leitner"]
   },
   {
     "unified_person_id": "gennady_timchenko",
@@ -21658,7 +21609,7 @@
   {
     "unified_person_id": "zhao_hongfei",
     "hurun_ids": ["zhao_hongfei"],
-    "forbes_ids": ["zhao_hongfei"]
+    "forbes_ids": ["zhao_hongfei", "hongfei_zhao"]
   },
   {
     "unified_person_id": "igor_bukhman",
@@ -21703,7 +21654,7 @@
   {
     "unified_person_id": "cheng_wei",
     "hurun_ids": ["cheng_wei"],
-    "forbes_ids": ["cheng_wei"]
+    "forbes_ids": ["cheng_wei", "will_wei_cheng"]
   },
   {
     "unified_person_id": "wang_lizhan",
@@ -21854,11 +21805,6 @@
     "unified_person_id": "rick_cohen",
     "hurun_ids": [],
     "forbes_ids": ["rick_cohen", "rick_cohen_family"]
-  },
-  {
-    "unified_person_id": "keeree_kanjanapas",
-    "hurun_ids": ["keeree_kanjanapa"],
-    "forbes_ids": ["keeree_kanjanapas"]
   },
   {
     "unified_person_id": "harald_link",
@@ -22373,7 +22319,7 @@
   {
     "unified_person_id": "an_kang",
     "hurun_ids": ["an_kang"],
-    "forbes_ids": ["an_kang"]
+    "forbes_ids": ["an_kang", "kang_an"]
   },
   {
     "unified_person_id": "rajinder_gupta",
@@ -22424,11 +22370,6 @@
     "unified_person_id": "zhang_songqiao",
     "hurun_ids": ["zhang_songqiao"],
     "forbes_ids": []
-  },
-  {
-    "unified_person_id": "laurene_powell_jobs",
-    "hurun_ids": ["laurene_powell_jobs_family"],
-    "forbes_ids": ["laurene_powell_jobs"]
   },
   {
     "unified_person_id": "chen_weizhong",
@@ -22756,11 +22697,6 @@
     "forbes_ids": ["henry_samueli"]
   },
   {
-    "unified_person_id": "anant_asavabhokhin",
-    "hurun_ids": ["anant_asavabhokhin"],
-    "forbes_ids": ["anant_asavabhokhin_1"]
-  },
-  {
     "unified_person_id": "tatyana_kim",
     "hurun_ids": [],
     "forbes_ids": ["tatyana_kim"]
@@ -22773,7 +22709,7 @@
   {
     "unified_person_id": "chen_huxiong",
     "hurun_ids": ["chen_huxiong"],
-    "forbes_ids": ["chen_huxiong"]
+    "forbes_ids": ["chen_huxiong", "huxiong_chen"]
   },
   {
     "unified_person_id": "thomas_rutledge",
@@ -23098,7 +23034,7 @@
   {
     "unified_person_id": "wang_jianyi",
     "hurun_ids": ["wang_jianyi"],
-    "forbes_ids": ["jianyi_wang"]
+    "forbes_ids": ["jianyi_wang", "wang_jianyi"]
   },
   {
     "unified_person_id": "feng_huanpei_fan_zhaoxia",
@@ -23178,7 +23114,7 @@
   {
     "unified_person_id": "marcelo_claure",
     "hurun_ids": ["marcelo_claure"],
-    "forbes_ids": ["r_marcelo_claure"]
+    "forbes_ids": ["marcelo_claure", "r_marcelo_claure"]
   },
   {
     "unified_person_id": "frank_fertitta_iii",
@@ -23658,7 +23594,7 @@
   {
     "unified_person_id": "chen_fashu",
     "hurun_ids": ["chen_fashu"],
-    "forbes_ids": ["chen_fashu"]
+    "forbes_ids": ["chen_fashu", "fashu_chen"]
   },
   {
     "unified_person_id": "mike_speiser",
@@ -24526,11 +24462,6 @@
     "forbes_ids": ["evangelos_marinakis"]
   },
   {
-    "unified_person_id": "adam_neumann",
-    "hurun_ids": ["adam_neumann"],
-    "forbes_ids": ["adam_neumann"]
-  },
-  {
     "unified_person_id": "jill_foss_watson",
     "hurun_ids": ["jill_foss_watson"],
     "forbes_ids": []
@@ -24763,7 +24694,7 @@
   {
     "unified_person_id": "he_xinming",
     "hurun_ids": ["he_xinming"],
-    "forbes_ids": []
+    "forbes_ids": ["he_xinming"]
   },
   {
     "unified_person_id": "dong_zengping",
@@ -26476,11 +26407,6 @@
     "forbes_ids": []
   },
   {
-    "unified_person_id": "hedda_im_brahm_droege",
-    "hurun_ids": ["hedda_im_brahm_droege"],
-    "forbes_ids": ["hedda_im_brahm_droege"]
-  },
-  {
     "unified_person_id": "ashish_mohapatra",
     "hurun_ids": ["ashish_mohapatra"],
     "forbes_ids": []
@@ -26998,7 +26924,7 @@
   {
     "unified_person_id": "song_fei",
     "hurun_ids": ["song_fei"],
-    "forbes_ids": ["song_fei"]
+    "forbes_ids": ["song_fei", "fei_song"]
   },
   {
     "unified_person_id": "stefania_triva",
@@ -28272,7 +28198,7 @@
   {
     "unified_person_id": "sun_guangxin",
     "hurun_ids": ["sun_guangxin"],
-    "forbes_ids": ["sun_guangxin"]
+    "forbes_ids": ["sun_guangxin", "guangxin_sun"]
   },
   {
     "unified_person_id": "robert_knauf",
@@ -29000,14 +28926,14 @@
     "forbes_ids": ["martin_moller_nielsen"]
   },
   {
-    "unified_person_id": "acharya_balkrishna",
-    "hurun_ids": ["acharya_balkrishna"],
-    "forbes_ids": ["acharya_balkrishna"]
-  },
-  {
     "unified_person_id": "vinod_khosla",
     "hurun_ids": ["vinod_khosla"],
     "forbes_ids": ["vinod_khosla"]
+  },
+  {
+    "unified_person_id": "adam_kwok",
+    "hurun_ids": ["adam_kwok", "adam_kwok_kai_fai"],
+    "forbes_ids": ["adam_kwok"]
   },
   {
     "unified_person_id": "chen_wenyuan",
@@ -30556,7 +30482,7 @@
   },
   {
     "unified_person_id": "ma_huateng",
-    "hurun_ids": ["ma_huateng", "pony_ma_huateng"],
+    "hurun_ids": ["pony_ma", "ma_huateng", "pony_ma_huateng"],
     "forbes_ids": ["ma_huateng"]
   },
   {
@@ -30630,9 +30556,9 @@
     "forbes_ids": []
   },
   {
-    "unified_person_id": "rajendrakumar_shivkisan_agrawal",
+    "unified_person_id": "shiv_kishan_agrawal",
     "hurun_ids": ["rajendrakumar_shivkisan_agrawal"],
-    "forbes_ids": []
+    "forbes_ids": ["shiv_kishan_agrawal"]
   },
   {
     "unified_person_id": "boenjamin_setiawan",
@@ -32204,11 +32130,6 @@
     "forbes_ids": ["edgar_de_picciotto"]
   },
   {
-    "unified_person_id": "hur_young_in",
-    "hurun_ids": ["huh_young_in"],
-    "forbes_ids": ["hur_young_in"]
-  },
-  {
     "unified_person_id": "liu_chiping",
     "hurun_ids": ["liu_chiping"],
     "forbes_ids": []
@@ -32750,7 +32671,10 @@
   },
   {
     "unified_person_id": "peter_woo_pao_pui_yung",
-    "hurun_ids": ["peter_woo_pao_pui_yung"],
+    "hurun_ids": [
+      "peter_woo_kwong_ching_pao_pui_yung",
+      "peter_woo_pao_pui_yung"
+    ],
     "forbes_ids": []
   },
   {
@@ -34337,5 +34261,155 @@
     "unified_person_id": "hu_bofan",
     "hurun_ids": ["hu_bofan"],
     "forbes_ids": ["hu_baifan"]
+  },
+  {
+    "unified_person_id": "anant_asavabhokin",
+    "hurun_ids": ["anant_asavabhokin", "anant_asavabhokhin"],
+    "forbes_ids": ["anant_asavabhokhin_1"]
+  },
+  {
+    "unified_person_id": "chen_ailian_wu_liangding",
+    "hurun_ids": ["chen_ailian_wu_liangding"],
+    "forbes_ids": []
+  },
+  {
+    "unified_person_id": "cynthia_y_bruce_grossman",
+    "hurun_ids": ["cynthia_y_bruce_grossman"],
+    "forbes_ids": []
+  },
+  {
+    "unified_person_id": "dhanin_chearavanont",
+    "hurun_ids": ["dhanin_chearavanont", "dhanin_chearavanont_family"],
+    "forbes_ids": ["dhanin_chearavanont"]
+  },
+  {
+    "unified_person_id": "eduardo_belmont_anderson",
+    "hurun_ids": ["eduardo_belmont_anderson", "eduardo_belmont"],
+    "forbes_ids": ["eduardo_belmont_anderson"]
+  },
+  {
+    "unified_person_id": "elaine_marshall",
+    "hurun_ids": ["elaine_marshall_family", "elaine_marshall"],
+    "forbes_ids": ["elaine_marshall"]
+  },
+  {
+    "unified_person_id": "hao_hong",
+    "hurun_ids": ["hao_hong"],
+    "forbes_ids": []
+  },
+  {
+    "unified_person_id": "haruko_mikitani",
+    "hurun_ids": ["haruko_mikitani"],
+    "forbes_ids": []
+  },
+  {
+    "unified_person_id": "hedda_im_brahm_droege",
+    "hurun_ids": ["hedda_brahm_droege", "hedda_im_brahm_droege"],
+    "forbes_ids": ["hedda_im_brahm_droege"]
+  },
+  {
+    "unified_person_id": "henry_cheng_kar_shun",
+    "hurun_ids": ["henry_cheng_kar_shun", "henry_cheng"],
+    "forbes_ids": ["henry_cheng_1"]
+  },
+  {
+    "unified_person_id": "henry_sy",
+    "hurun_ids": ["henry_sy", "henry_sy_family"],
+    "forbes_ids": ["henry_sy"]
+  },
+  {
+    "unified_person_id": "hur_young_in",
+    "hurun_ids": ["hur_young_in", "huh_young_in"],
+    "forbes_ids": ["hur_young_in"]
+  },
+  {
+    "unified_person_id": "jonathan_burrell",
+    "hurun_ids": ["jonathan_burrell", "jonathan_c_burrell"],
+    "forbes_ids": []
+  },
+  {
+    "unified_person_id": "jose_isaac_peres",
+    "hurun_ids": ["jose_issac_peres", "jose_isaac_peres"],
+    "forbes_ids": ["jose_isaac_peres"]
+  },
+  {
+    "unified_person_id": "juan_cuneo_solari",
+    "hurun_ids": ["juan_coneo_solari", "juan_cuneo_solari"],
+    "forbes_ids": ["juan_cuneo_solari_family"]
+  },
+  {
+    "unified_person_id": "juan_domingo_beckmann_legorreta",
+    "hurun_ids": ["juan_domingo_beckmann", "juan_domingo_beckmann_legorreta"],
+    "forbes_ids": ["juan_domingo_beckmann_legorreta"]
+  },
+  {
+    "unified_person_id": "jurgen_blickle",
+    "hurun_ids": ["jurgen_bickle", "jurgen_blickle"],
+    "forbes_ids": ["juergen_blickle"]
+  },
+  {
+    "unified_person_id": "keeree_kanjanapas",
+    "hurun_ids": ["keeree_kanjanapas", "keeree_kanjanapa"],
+    "forbes_ids": ["keeree_kanjanapas"]
+  },
+  {
+    "unified_person_id": "kim_beom_soo",
+    "hurun_ids": ["kim_bum_soo", "kim_beom_soo"],
+    "forbes_ids": ["kim_beom_su"]
+  },
+  {
+    "unified_person_id": "bom_suk_kim",
+    "hurun_ids": ["bom_suk_kim"],
+    "forbes_ids": ["bom_kim"]
+  },
+  {
+    "unified_person_id": "laurene_powell_jobs",
+    "hurun_ids": ["laurene_powell_jobs", "laurene_powell_jobs_family"],
+    "forbes_ids": ["laurene_powell_jobs"]
+  },
+  {
+    "unified_person_id": "wolfgang_leitner",
+    "hurun_ids": ["leitner_wolfgang", "wolfgang_leitner"],
+    "forbes_ids": ["wolfgang_leitner"]
+  },
+  {
+    "unified_person_id": "leonardo_del_vecchio",
+    "hurun_ids": [
+      "leonardo_del_vecchio",
+      "leonardo_del_vecchio_2",
+      "leonardo_del_vecchio_3",
+      "leonardo_del_vecchio_4"
+    ],
+    "forbes_ids": ["leonardo_del_vecchio"]
+  },
+  {
+    "unified_person_id": "lin_yu_lin",
+    "hurun_ids": ["lin_yu_lin"],
+    "forbes_ids": ["lin_yu_ling"]
+  },
+  {
+    "unified_person_id": "luiz_frias",
+    "hurun_ids": ["luis_frias", "luiz_frias"],
+    "forbes_ids": ["luiz_frias"]
+  },
+  {
+    "unified_person_id": "madhusudan_agarwal",
+    "hurun_ids": ["madhusudhan_agarwal", "madhusudan_agarwal"],
+    "forbes_ids": ["madhusudan_agarwal"]
+  },
+  {
+    "unified_person_id": "samwer",
+    "hurun_ids": ["samwer"],
+    "forbes_ids": []
+  },
+  {
+    "unified_person_id": "valerie",
+    "hurun_ids": ["valerie"],
+    "forbes_ids": []
+  },
+  {
+    "unified_person_id": "yoichi_keiko_erikawa",
+    "hurun_ids": [],
+    "forbes_ids": ["yoichi_keiko_erikawa"]
   }
 ]
