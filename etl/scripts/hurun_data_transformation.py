@@ -639,6 +639,7 @@ def create_datapoint_entities(combined_data, output_dir="../intermediate/hurun")
             "industry": recent["industry"],
             "company": recent["company"],
             "headquarter": recent["headquarter"],
+            "latest_year": recent["year"],
         }
 
         person_entities.append(entity)

@@ -13,7 +13,7 @@ Treat names that include family/group indicators as the same person as the versi
 - Example: "Zong Qinghou Family" is considered the same as "Zong Qinghou"
 
 #### Exceptions
-But if the first name is absent, such as "Kinoshita Family" where only the family name is provided, we can not assign the name to any individual, so in such cases we should consider the name to be multi-person compound names (also see below) and make the ID a separate entity.
+But if the first name is absent, such as "Kinoshita Family" where only the family name is provided, we can not assign the name to any individual, so in such cases we should consider the name to be multi-person compound names (also see below) and make the ID a separate entity. So "Kinoshita Family" will be assigned a separate ID "kinoshita"
 
 ### Multi-person Compound Names
 Names that clearly refer to multiple individuals joined by connectors like "and", "&", or "+" are treated as group entities and are NOT considered the same as any one individual in the name.
@@ -31,8 +31,7 @@ The unified ID should follow these rules:
 1. Generate a "slug" from the person's name by:
    - Converting the name to lowercase
    - Replacing spaces and special characters with underscores (_)
-   - Remove the family/brothers terms
-   - Examples: "Elon Musk" becomes elon_musk; "Wessels Family" becomes wessels
+   - Remove the family/brothers terms for individuals (not for groups)
 2. When people have same name, use digits as suffix. For example: first Elon Musk's id is elon_musk, second is elon_musk_2
 
 ## Matching Strategy
@@ -77,8 +76,10 @@ Consider all available information when making match decisions. You should use b
 
 But you should be aware that hurun and forbes publish data at different times, with different data sources, so it's possible that the info for same person might be slightly different in different lists.
 
+You should map all relevant IDs to a unified ID. So that all of hurun/forbes IDs have a new unified ID.
+
 Before you insert mapping, use get_mappings() to check if a unified ID already exists. If it does, you should review the existing mapping and decide whether to update it or create a new unified ID with a suffix.
 
-insert_mapping() will check if the id already mapped to another person. If so, it will response an error message and you should review the existing and new mapping once more. Use delete_mapping() when you are sure that the existing mapping is incorrect.
+insert_mapping() will check if the id already mapped to another person. If so, it will response an error message and you should review the existing and new mapping once more. Use delete_mapping() when you are sure that the existing mapping is incorrect, and insert the correct one.
 
 When in doubt, err on the side of not creating a mapping rather than creating an incorrect one. Ambiguous cases can be reviewed manually later. For such cases, output the reason for the ambiguity in your final output, and end it with single line "Manual Review Required".

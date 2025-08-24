@@ -75,6 +75,7 @@ def transform_forbes_data(source_dir, output_dir):
                 "industry": row.get("industry", ""),
                 "title": row.get("title", ""),
                 "image_uri": pd.NA if not image_uri.startswith("no-pic") else image_uri,
+                "latest_year": year,
             }
 
     datapoints_df = pd.DataFrame(datapoints_list).dropna(subset=["worth"])
