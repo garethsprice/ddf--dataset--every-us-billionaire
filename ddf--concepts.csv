@@ -1,7 +1,7 @@
 concept,concept_type,name,domain,description,source_url,tags,scales,indicator_url,color,drill_up,unit
 person,entity_domain,Person,,,,,,,,,
 income_group,entity_domain,Income group,,,,,,,,,
-worth,measure,Worth in millions,,,,,,,,,
+worth,measure,Worth in millions (conveted to 2021 PPP USD),,,,,,,,,
 annual_income,measure,Annual income,,,,,,,,,
 daily_income,measure,Daily income,,"Data from Forbes' 'The World's Billionaires' and Hurun's 'Hurun Global Rich List'. Net worth from different years is adjusted to 2017 US$, and the daily income is calculated from net worth using 3% as annual capital return rate. The procedures for merging the lists, adjusting the income values and drawing the shapes with 'Unknown rich persons' are described in the documentation",https://www.gapminder.org/data/documentation/billionaires-dataset/,,,,,,
 income_level,measure,Income level,,,,,,,,,

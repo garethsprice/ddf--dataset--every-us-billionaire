@@ -78,8 +78,8 @@ assert adf.reset_index(drop=True).equals(bdf.reset_index(drop=True)), "they shou
 # conversion rate data was generated from the converter:
 # https://docs.google.com/spreadsheets/d/1cTTPAZFztutN9FojsXd-YYEGqW2bekToBcV20_3Blkg
 # Downloaded to source/GDP inflation Calculator - output.csv
-rates_df = pd.read_csv("../source/GDP inflation Calculator - output.csv")
-rates = rates_df.set_index("time")["conversion rate for 2021 dollar"]
+rates_df = pd.read_csv("../source/gdp_inflation_conversion_rates.csv")
+rates = rates_df.set_index("time")["conversion_rate"]
 
 rates
 
