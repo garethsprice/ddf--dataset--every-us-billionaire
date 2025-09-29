@@ -203,3 +203,134 @@ unified_person_final = unified_person_final[final_cols]
 unified_person_final.to_csv("../../ddf--entities--person.csv", index=False)
 
 unified_person_final
+
+
+# now calculate some more indicators.
+# average_age_of_dollar_billionaires_years  - by country/time
+# dollar_billionaires_per_million_people - by country/time
+# total_number_of_dollar_billionaires - by country/time
+#
+
+# Average age of billionaires
+person_info = unified_person_final[["person", "birth_year", "country"]].copy()
+merged_df = pd.merge(unified_worth, person_info, on="person")
+
+# Drop rows with missing birth_year or country
+merged_df = merged_df.dropna(subset=["birth_year", "country"]).copy()
+
+merged_df
+
+# Calculate age
+merged_df["age"] = merged_df["time"] - merged_df["birth_year"]
+
+# check suspious values
+to_check = (
+    merged_df[merged_df["age"] < 20].sort_values(by=["person", "time"]).groupby("person").first()
+)
+print("here are some possible errors (only one row for each person displayed):")
+print(to_check)
+
+# Group by country and time and calculate average age
+average_age_df = merged_df.groupby(["country", "time"])["age"].mean().reset_index()
+
+# Rename columns to match DDF format
+average_age_df.columns = ["country", "time", "average_age_of_dollar_billionaires_years"]
+average_age_df["average_age_of_dollar_billionaires_years"] = average_age_df[
+    "average_age_of_dollar_billionaires_years"
+].round(2)
+
+# Save to CSV
+average_age_df.sort_values(by=["country", "time"]).to_csv(
+    "../../ddf--datapoints--average_age_of_dollar_billionaires_years--by--country--time.csv",
+    index=False,
+)
+
+average_age_df
+
+# total_number_of_dollar_billionaires - by country/time
+person_country = unified_person_final[["person", "country"]].copy()
+merged_df_for_count = pd.merge(unified_worth, person_country, on="person")
+merged_df_for_count = merged_df_for_count.dropna(subset=["country"])
+
+total_billionaires_df = (
+    merged_df_for_count.groupby(["country", "time"])
+    .size()
+    .reset_index(name="total_number_of_dollar_billionaires")
+)
+
+total_billionaires_df.sort_values(by=["country", "time"]).to_csv(
+    "../../ddf--datapoints--total_number_of_dollar_billionaires--by--country--time.csv", index=False
+)
+
+total_billionaires_df
+
+
+# load population data
+pop = pd.read_csv("../source/ddf--datapoints--pop--by--country--time.csv")
+
+# dollar_billionaires_per_million_people - by country/time
+merged_pop_df = pd.merge(total_billionaires_df, pop, on=["country", "time"], how="inner")
+merged_pop_df["dollar_billionaires_per_million_people"] = (
+    merged_pop_df["total_number_of_dollar_billionaires"] / merged_pop_df["pop"]
+) * 1_000_000
+
+per_million_df = merged_pop_df[["country", "time", "dollar_billionaires_per_million_people"]]
+
+per_million_df.sort_values(by=["country", "time"]).to_csv(
+    "../../ddf--datapoints--dollar_billionaires_per_million_people--by--country--time.csv",
+    index=False,
+)
+
+per_million_df
+
+
+# create concepts
+# 1. load concepts from open_numbers name space
+concepts_on = pd.read_csv("../source/ddf--concepts.csv")
+
+# 2. Create concepts for person entity and measures
+person_concepts_data = [
+    {"concept": "person", "name": "Person", "concept_type": "entity_domain"},
+    {"concept": "last_name", "name": "Last Name", "concept_type": "string", "domain": "person"},
+    {
+        "concept": "chinese_name",
+        "name": "Chinese Name",
+        "concept_type": "string",
+        "domain": "person",
+    },
+    {"concept": "birth_year", "name": "Birth Year", "concept_type": "string", "domain": "person"},
+    {"concept": "industry", "name": "Industry", "concept_type": "string", "domain": "person"},
+    {"concept": "company", "name": "Company", "concept_type": "string", "domain": "person"},
+    {"concept": "source", "name": "Source", "concept_type": "string", "domain": "person"},
+    {"concept": "title", "name": "Title", "concept_type": "string", "domain": "person"},
+    {"concept": "gender", "name": "Gender", "concept_type": "string", "domain": "person"},
+]
+person_concepts = pd.DataFrame(person_concepts_data)
+
+measures_data = [
+    {"concept": "worth", "name": "Net Worth (millions, 2021 USD)", "concept_type": "measure"},
+    {"concept": "annual_income", "name": "Annual Income (2021 USD)", "concept_type": "measure"},
+    {"concept": "daily_income", "name": "Daily Income (2021 USD)", "concept_type": "measure"},
+    {
+        "concept": "average_age_of_dollar_billionaires_years",
+        "name": "Average age of dollar billionaires (years)",
+        "concept_type": "measure",
+    },
+    {
+        "concept": "total_number_of_dollar_billionaires",
+        "name": "Total number of dollar billionaires",
+        "concept_type": "measure",
+    },
+    {
+        "concept": "dollar_billionaires_per_million_people",
+        "name": "Dollar billionaires per million people",
+        "concept_type": "measure",
+    },
+]
+measures = pd.DataFrame(measures_data)
+
+# 3. Combine all concepts and save
+all_concepts = pd.concat([concepts_on, person_concepts, measures], ignore_index=True)
+all_concepts.to_csv("../../ddf--concepts.csv", index=False)
+
+all_concepts
