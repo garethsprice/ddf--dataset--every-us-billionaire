@@ -8,7 +8,7 @@
         "name": "English",
         "id": "en"
     },
-    "created": "2025-09-28T01:31:26.104Z",
+    "created": "2025-09-29T01:54:24.789Z",
     "translations": [],
     "version": "3.1.0",
     "resources": [
@@ -24,10 +24,10 @@
                         "name": "concept_type"
                     },
                     {
-                        "name": "name"
+                        "name": "domain"
                     },
                     {
-                        "name": "domain"
+                        "name": "name"
                     },
                     {
                         "name": "description"
@@ -522,23 +522,6 @@
             }
         },
         {
-            "name": "ddf--entities--income_group",
-            "path": "ddf--entities--income_group.csv",
-            "schema": {
-                "fields": [
-                    {
-                        "name": "income_group"
-                    },
-                    {
-                        "name": "name"
-                    }
-                ],
-                "primaryKey": [
-                    "income_group"
-                ]
-            }
-        },
-        {
             "name": "ddf--entities--person",
             "path": "ddf--entities--person.csv",
             "schema": {
@@ -604,6 +587,27 @@
             }
         },
         {
+            "name": "ddf--datapoints--average_age_of_dollar_billionaires_years--by--country--time",
+            "path": "ddf--datapoints--average_age_of_dollar_billionaires_years--by--country--time.csv",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "country"
+                    },
+                    {
+                        "name": "time"
+                    },
+                    {
+                        "name": "average_age_of_dollar_billionaires_years"
+                    }
+                ],
+                "primaryKey": [
+                    "country",
+                    "time"
+                ]
+            }
+        },
+        {
             "name": "ddf--datapoints--daily_income--by--person--time",
             "path": "ddf--datapoints--daily_income--by--person--time.csv",
             "schema": {
@@ -620,6 +624,48 @@
                 ],
                 "primaryKey": [
                     "person",
+                    "time"
+                ]
+            }
+        },
+        {
+            "name": "ddf--datapoints--dollar_billionaires_per_million_people--by--country--time",
+            "path": "ddf--datapoints--dollar_billionaires_per_million_people--by--country--time.csv",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "country"
+                    },
+                    {
+                        "name": "time"
+                    },
+                    {
+                        "name": "dollar_billionaires_per_million_people"
+                    }
+                ],
+                "primaryKey": [
+                    "country",
+                    "time"
+                ]
+            }
+        },
+        {
+            "name": "ddf--datapoints--total_number_of_dollar_billionaires--by--country--time",
+            "path": "ddf--datapoints--total_number_of_dollar_billionaires--by--country--time.csv",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "country"
+                    },
+                    {
+                        "name": "time"
+                    },
+                    {
+                        "name": "total_number_of_dollar_billionaires"
+                    }
+                ],
+                "primaryKey": [
+                    "country",
                     "time"
                 ]
             }
@@ -1488,15 +1534,6 @@
             },
             {
                 "primaryKey": [
-                    "income_group"
-                ],
-                "value": "name",
-                "resources": [
-                    "ddf--entities--income_group"
-                ]
-            },
-            {
-                "primaryKey": [
                     "income_groups"
                 ],
                 "value": "is--income_3groups",
@@ -1922,6 +1959,66 @@
             }
         ],
         "datapoints": [
+            {
+                "primaryKey": [
+                    "country",
+                    "time"
+                ],
+                "value": "average_age_of_dollar_billionaires_years",
+                "resources": [
+                    "ddf--datapoints--average_age_of_dollar_billionaires_years--by--country--time"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "country",
+                    "time"
+                ],
+                "value": "dollar_billionaires_per_million_people",
+                "resources": [
+                    "ddf--datapoints--dollar_billionaires_per_million_people--by--country--time"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "country",
+                    "time"
+                ],
+                "value": "total_number_of_dollar_billionaires",
+                "resources": [
+                    "ddf--datapoints--total_number_of_dollar_billionaires--by--country--time"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "geo",
+                    "time"
+                ],
+                "value": "average_age_of_dollar_billionaires_years",
+                "resources": [
+                    "ddf--datapoints--average_age_of_dollar_billionaires_years--by--country--time"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "geo",
+                    "time"
+                ],
+                "value": "dollar_billionaires_per_million_people",
+                "resources": [
+                    "ddf--datapoints--dollar_billionaires_per_million_people--by--country--time"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "geo",
+                    "time"
+                ],
+                "value": "total_number_of_dollar_billionaires",
+                "resources": [
+                    "ddf--datapoints--total_number_of_dollar_billionaires--by--country--time"
+                ]
+            },
             {
                 "primaryKey": [
                     "person",
