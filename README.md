@@ -1,32 +1,40 @@
-# Billionaires list
+# Gapminder Billionaires Dataset
 
-To get started with DDF and learn how to use the dataset, please read the
-[introduction to DDF][1] and [DDFcsv format document][2].
+This repository contains a DDF dataset on dollar billionaires, built by combining and harmonizing data from:
 
-This list is based on [forbes list][3] and [hurun list][4].
+- [Forbes Billionaires List](https://www.forbes.com/billionaires/)
+- [Hurun Global Rich List](https://www.hurun.net/en-US/Rank/HsRankDetails?pagetype=global)
 
-[1]: https://open-numbers.github.io/ddf.html
-[2]: https://docs.google.com/document/d/1aynARjsrSgOKsO1dEqboTqANRD1O9u7J_xmxy8m5jW8
-[3]: https://www.forbes.com/billionaires/
-[4]: https://www.hurun.net/en-US/Rank/HsRankDetails?pagetype=global
+If you are new to DDF:
 
-## Indicators
+- [Introduction to DDF](https://open-numbers.github.io/ddf.html)
+- [DDFcsv format documentation](https://docs.google.com/document/d/1aynARjsrSgOKsO1dEqboTqANRD1O9u7J_xmxy8m5jW8)
 
-- List of indicators in this repo
+## Key documentation
 
-## Definition of indicator
+- **Methodology (matching/merging rules):** [`methodology.md`](./methodology.md)
+- **ETL update workflow (how to refresh the dataset):** [`etl/README.md`](./etl/README.md)
+- **Concepts and indicator metadata:** [`ddf--concepts.csv`](./ddf--concepts.csv)
 
+## What this dataset includes
 
-## Unit of measurement
+The dataset contains:
 
+- Person-level entity data (billionaires)
+- Person-level time series (e.g. `worth`, `annual_income`, `daily_income`)
+- Country-level derived indicators (e.g. billionaire counts, billionaires per million, average age)
 
-## Versions
+You can inspect available files directly in the repository root (for datapoints/entities) and in [`ddf--concepts.csv`](./ddf--concepts.csv) for definitions and metadata.
 
+## Data processing summary
 
-### Revision history
+At a high level, updates follow this process:
 
+1. Download source data (Hurun + Forbes)
+2. Transform each source to clean intermediate tables
+3. Generate embeddings for matching
+4. Run MCP/LLM-assisted matching to create mappings
+5. Human review of mappings
+6. Build final DDF outputs
 
-## Data sources summary
-
-
-## Specific information about this indicator
+See full instructions in [`etl/README.md`](./etl/README.md).

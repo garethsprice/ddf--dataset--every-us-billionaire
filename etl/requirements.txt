@@ -1,1 +1,21 @@
-pandas<1.1
+# Unified ETL + MCP dependencies
+
+# Core data processing
+pandas
+numpy
+
+# MCP server
+mcp
+
+# Embeddings and similarity
+sentence-transformers
+scikit-learn
+
+# Fuzzy matching
+rapidfuzz
+fuzzywuzzy
+python-levenshtein
+
+# API/runtime utilities
+fastapi
+uvicorn
