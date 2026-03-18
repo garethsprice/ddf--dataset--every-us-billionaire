@@ -116,24 +116,60 @@ def extract_financial_timeseries(facts):
     if not revenue_entries:
         return {}
 
-    # Deduplicate by end date (keep latest accession)
+    # Filter out stub/transition periods: keep only entries where the period
+    # is roughly a full year (>300 days). Stub periods produce nonsensical margins.
+    def is_full_year(entry):
+        start = entry.get('start')
+        end = entry.get('end')
+        if not start or not end:
+            return True  # no start date means we can't check, keep it
+        from datetime import date
+        try:
+            d0 = date.fromisoformat(start)
+            d1 = date.fromisoformat(end)
+            return (d1 - d0).days >= 300
+        except (ValueError, TypeError):
+            return True
+
+    revenue_entries = [e for e in revenue_entries if is_full_year(e)]
+    if not revenue_entries:
+        return {}
+
+    # Deduplicate by end date: prefer the entry from its OWN fiscal year filing
+    # (where fy matches the end year), to avoid comparative data from later filings
+    # which can cause cross-period mismatches.
     by_end = {}
     for entry in revenue_entries:
         end = entry['end']
-        if end not in by_end or entry.get('accn', '') >= by_end[end].get('accn', ''):
+        existing = by_end.get(end)
+        if existing is None:
             by_end[end] = entry
+        else:
+            # Prefer entry where fy matches end year (own filing vs comparative)
+            end_year = int(end[:4])
+            new_is_own = entry.get('fy') == end_year
+            old_is_own = existing.get('fy') == int(existing['end'][:4])
+            if new_is_own and not old_is_own:
+                by_end[end] = entry
+            elif not (old_is_own and not new_is_own):
+                # Both same priority — keep latest accession
+                if entry.get('accn', '') >= existing.get('accn', ''):
+                    by_end[end] = entry
 
     def get_same_period_val(tag, ref_accn, ref_end):
-        """Get value from the same 10-K filing as the reference revenue."""
+        """Get value from the same 10-K filing AND same period as the revenue."""
         if tag not in us_gaap:
             return None
         try:
             units = us_gaap[tag]['units']['USD']
+            # Match by accession number AND end date (same filing, same period)
             if ref_accn:
-                matches = [x for x in units if x.get('accn') == ref_accn]
+                matches = [x for x in units
+                           if x.get('accn') == ref_accn and x.get('end') == ref_end]
                 if matches:
                     fy = [x for x in matches if x.get('fp') == 'FY']
                     return (fy or matches)[-1]['val']
+            # Fall back to matching by end date only
             matches = [
                 x for x in units
                 if x.get('end') == ref_end and x.get('form') in ('10-K', '10-K/A')
@@ -165,7 +201,9 @@ def extract_financial_timeseries(facts):
         op_income = get_same_period_val('OperatingIncomeLoss', ref_accn, end_date)
         if op_income is not None:
             om = op_income / revenue_val * 100
-            if -10000 <= om <= 10000:
+            # Op margin outside [-100%, 100%] usually means revenue is a segment
+            # figure while op income is consolidated, or vice versa — skip these.
+            if -100 <= om <= 100:
                 row['operating_margin_pct'] = round(om, 1)
 
         results[year] = row
