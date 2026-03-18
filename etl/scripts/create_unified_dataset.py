@@ -169,20 +169,27 @@ for person_id in missing_country_persons:
         print(f"Mapping for {person_id} (missing country, multiple hurun IDs): {m}")
 
 
-# Merge EDGAR entity data (ticker, cik, ipo_year, comp, ownership)
-edgar_entity_file = edgar_data_folder + "/ddf--entities--person.csv"
-if os.path.exists(edgar_entity_file):
-    edgar_person = pd.read_csv(edgar_entity_file, dtype={"cik": str, "ipo_year": "Int64"})
+# Merge EDGAR person-level data (ticker, comp, ownership)
+edgar_person_file = edgar_data_folder + "/ddf--entities--person.csv"
+if os.path.exists(edgar_person_file):
+    edgar_person = pd.read_csv(edgar_person_file)
     unified_person_final = unified_person_final.merge(edgar_person, on="person", how="left")
-    print(f"EDGAR entity merge: {edgar_person.shape[0]} rows joined, {edgar_person.columns.tolist()}")
+    print(f"EDGAR person merge: {edgar_person.shape[0]} rows joined, {edgar_person.columns.tolist()}")
 else:
-    print("WARNING: EDGAR entity file not found, skipping EDGAR merge")
+    print("WARNING: EDGAR person entity file not found, skipping EDGAR merge")
+
+# Read EDGAR company entities (separate entity domain)
+edgar_company_file = edgar_data_folder + "/ddf--entities--company.csv"
+edgar_companies = None
+if os.path.exists(edgar_company_file):
+    edgar_companies = pd.read_csv(edgar_company_file, dtype={"cik": str, "ipo_year": "Int64"})
+    print(f"EDGAR companies loaded: {len(edgar_companies)} companies")
+else:
+    print("WARNING: EDGAR company entity file not found")
 
 # output to entity
-edgar_cols = [
+edgar_person_cols = [
     "ticker",
-    "cik",
-    "ipo_year",
     "equity_stake_pct",
     "voting_control_pct",
     "total_comp_m",
@@ -201,7 +208,7 @@ final_cols = [
     "company",
     "source",
     "title",
-] + [c for c in edgar_cols if c in unified_person_final.columns]
+] + [c for c in edgar_person_cols if c in unified_person_final.columns]
 unified_person_final = unified_person_final[final_cols]
 
 # Filter to US individuals only
@@ -215,6 +222,15 @@ unified_worth = unified_worth[unified_worth["person"].isin(us_persons)].copy()
 print(f"US worth datapoints: {len(unified_worth)} rows")
 
 unified_person_final.to_csv("../../ddf--entities--person.csv", index=False)
+
+# Write listed_company entities (filtered to tickers used by US persons)
+if edgar_companies is not None:
+    us_tickers = set(unified_person_final["ticker"].dropna())
+    edgar_companies_us = edgar_companies[edgar_companies["company"].isin(us_tickers)].copy()
+    # Rename 'company' column to 'listed_company' for DDF entity domain
+    edgar_companies_us = edgar_companies_us.rename(columns={"company": "listed_company"})
+    edgar_companies_us.sort_values("listed_company").to_csv("../../ddf--entities--listed_company.csv", index=False)
+    print(f"Listed company entities: {len(edgar_companies_us)} companies (US persons' tickers)")
 
 # Write worth and income datapoints (after US filter)
 unified_worth.sort_values(by=["person", "time"]).to_csv(
@@ -315,20 +331,24 @@ per_million_df.sort_values(by=["country", "time"]).to_csv(
 per_million_df
 
 
-# Copy EDGAR datapoint files to final output
-edgar_datapoint_files = [
-    "ddf--datapoints--revenue_m--by--person--time.csv",
-    "ddf--datapoints--gross_margin_pct--by--person--time.csv",
-    "ddf--datapoints--operating_margin_pct--by--person--time.csv",
+# Copy EDGAR company-keyed datapoint files to final output (filtered to US persons' tickers)
+us_tickers = set(unified_person_final["ticker"].dropna())
+edgar_datapoint_src_files = [
+    "ddf--datapoints--revenue_m--by--company--time.csv",
+    "ddf--datapoints--gross_margin_pct--by--company--time.csv",
+    "ddf--datapoints--operating_margin_pct--by--company--time.csv",
 ]
-for dpf in edgar_datapoint_files:
+for dpf in edgar_datapoint_src_files:
     src = edgar_data_folder + "/" + dpf
-    dst = "../../" + dpf
+    # Rename 'company' → 'listed_company' in output filename and column
+    dst_name = dpf.replace("--by--company--", "--by--listed_company--")
+    dst = "../../" + dst_name
     if os.path.exists(src):
         df = pd.read_csv(src)
-        df = df[df["person"].isin(us_persons)]
-        df.sort_values(by=["person", "time"]).to_csv(dst, index=False)
-        print(f"Copied {dpf}: {len(df)} rows (US only)")
+        df = df[df["company"].isin(us_tickers)]
+        df = df.rename(columns={"company": "listed_company"})
+        df.sort_values(by=["listed_company", "time"]).to_csv(dst, index=False)
+        print(f"Wrote {dst_name}: {len(df)} rows (US tickers)")
     else:
         print(f"WARNING: {src} not found, skipping")
 
@@ -356,17 +376,25 @@ person_concepts_data = [
 ]
 person_concepts = pd.DataFrame(person_concepts_data)
 
-edgar_entity_concepts_data = [
+# Listed company entity domain concepts (keyed by ticker symbol)
+company_concepts_data = [
+    {"concept": "listed_company", "name": "Listed Company", "concept_type": "entity_domain"},
+    {"concept": "cik", "name": "SEC CIK", "concept_type": "string", "domain": "listed_company"},
+    {"concept": "company_name", "name": "Company Name", "concept_type": "string", "domain": "listed_company"},
+    {"concept": "ipo_year", "name": "IPO Year", "concept_type": "string", "domain": "listed_company"},
+]
+company_concepts = pd.DataFrame(company_concepts_data)
+
+# EDGAR person-level concepts (ticker links person → company)
+edgar_person_concepts_data = [
     {"concept": "ticker", "name": "Ticker Symbol", "concept_type": "string", "domain": "person"},
-    {"concept": "cik", "name": "SEC CIK", "concept_type": "string", "domain": "person"},
-    {"concept": "ipo_year", "name": "IPO Year", "concept_type": "string", "domain": "person"},
     {"concept": "equity_stake_pct", "name": "Equity Stake (%)", "concept_type": "measure", "domain": "person"},
     {"concept": "voting_control_pct", "name": "Voting Control (%)", "concept_type": "measure", "domain": "person"},
     {"concept": "total_comp_m", "name": "Total Compensation ($M)", "concept_type": "measure", "domain": "person"},
     {"concept": "base_salary_k", "name": "Base Salary ($K)", "concept_type": "measure", "domain": "person"},
     {"concept": "stock_awards_m", "name": "Stock Awards ($M)", "concept_type": "measure", "domain": "person"},
 ]
-edgar_entity_concepts = pd.DataFrame(edgar_entity_concepts_data)
+edgar_person_concepts = pd.DataFrame(edgar_person_concepts_data)
 
 measures_data = [
     {"concept": "worth", "name": "Net Worth (millions, 2021 USD)", "concept_type": "measure"},
@@ -394,7 +422,7 @@ measures_data = [
 measures = pd.DataFrame(measures_data)
 
 # 3. Combine all concepts and save
-all_concepts = pd.concat([concepts_on, person_concepts, edgar_entity_concepts, measures], ignore_index=True)
+all_concepts = pd.concat([concepts_on, person_concepts, company_concepts, edgar_person_concepts, measures], ignore_index=True)
 all_concepts.to_csv("../../ddf--concepts.csv", index=False)
 
 all_concepts

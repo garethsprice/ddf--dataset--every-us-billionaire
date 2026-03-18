@@ -9,14 +9,17 @@ Input:
   source/edgar/ticker_map.csv      — person → ticker → CIK mapping
 
 Output (intermediate/edgar/):
+  ddf--entities--company.csv
+    Company-level properties: company (ticker), cik, company_name, ipo_year
+
   ddf--entities--person.csv
-    Person-level properties: ticker, cik, ipo_year, equity_stake_pct,
+    Person-level EDGAR properties: ticker, equity_stake_pct,
     voting_control_pct, total_comp_m, base_salary_k, stock_awards_m
 
-  ddf--datapoints--revenue_m--by--person--time.csv
-  ddf--datapoints--gross_margin_pct--by--person--time.csv
-  ddf--datapoints--operating_margin_pct--by--person--time.csv
-    Time-series financial data from 10-K annual filings.
+  ddf--datapoints--revenue_m--by--company--time.csv
+  ddf--datapoints--gross_margin_pct--by--company--time.csv
+  ddf--datapoints--operating_margin_pct--by--company--time.csv
+    Time-series financial data from 10-K annual filings, keyed by company.
 
 Usage:
   cd etl/scripts
@@ -50,18 +53,21 @@ REVENUE_TAGS = [
 def load_ticker_map():
     """
     Returns:
+      cik_to_ticker: {cik: ticker}
       cik_persons: {cik: [(person, ticker), ...]}
-      person_tickers: {person: ticker}  (first ticker wins)
+      person_tickers: {person: ticker}
     """
+    cik_to_ticker = {}
     cik_persons = {}
     person_tickers = {}
     with open(TICKER_MAP, newline='') as f:
         for row in csv.DictReader(f):
             person, ticker, cik = row['person'], row['ticker'], row['cik']
+            cik_to_ticker[cik] = ticker
             cik_persons.setdefault(cik, []).append((person, ticker))
             if person not in person_tickers:
                 person_tickers[person] = ticker
-    return cik_persons, person_tickers
+    return cik_to_ticker, cik_persons, person_tickers
 
 
 # ── XBRL extraction ──────────────────────────────────────────────────────────
@@ -70,7 +76,6 @@ def extract_ipo_year(facts):
     """Extract IPO year from the earliest 10-K filing date."""
     us_gaap = facts.get('facts', {}).get('us-gaap', {})
     earliest_year = None
-    # Check a common tag for earliest filing
     for tag in REVENUE_TAGS:
         if tag not in us_gaap:
             continue
@@ -91,7 +96,7 @@ def extract_financial_timeseries(facts):
     Extract annual revenue, gross margin, and operating margin time series.
     Returns: {year: {revenue_m, gross_margin_pct, operating_margin_pct}}
 
-    Matches all metrics to the same filing (by accession number, then end date).
+    Matches all metrics to the same filing (by accession number + end date).
     """
     us_gaap = facts.get('facts', {}).get('us-gaap', {})
     results = {}
@@ -116,13 +121,12 @@ def extract_financial_timeseries(facts):
     if not revenue_entries:
         return {}
 
-    # Filter out stub/transition periods: keep only entries where the period
-    # is roughly a full year (>300 days). Stub periods produce nonsensical margins.
+    # Filter out stub/transition periods (<300 days)
     def is_full_year(entry):
         start = entry.get('start')
         end = entry.get('end')
         if not start or not end:
-            return True  # no start date means we can't check, keep it
+            return True
         from datetime import date
         try:
             d0 = date.fromisoformat(start)
@@ -136,8 +140,6 @@ def extract_financial_timeseries(facts):
         return {}
 
     # Deduplicate by end date: prefer the entry from its OWN fiscal year filing
-    # (where fy matches the end year), to avoid comparative data from later filings
-    # which can cause cross-period mismatches.
     by_end = {}
     for entry in revenue_entries:
         end = entry['end']
@@ -145,14 +147,12 @@ def extract_financial_timeseries(facts):
         if existing is None:
             by_end[end] = entry
         else:
-            # Prefer entry where fy matches end year (own filing vs comparative)
             end_year = int(end[:4])
             new_is_own = entry.get('fy') == end_year
             old_is_own = existing.get('fy') == int(existing['end'][:4])
             if new_is_own and not old_is_own:
                 by_end[end] = entry
             elif not (old_is_own and not new_is_own):
-                # Both same priority — keep latest accession
                 if entry.get('accn', '') >= existing.get('accn', ''):
                     by_end[end] = entry
 
@@ -162,14 +162,12 @@ def extract_financial_timeseries(facts):
             return None
         try:
             units = us_gaap[tag]['units']['USD']
-            # Match by accession number AND end date (same filing, same period)
             if ref_accn:
                 matches = [x for x in units
                            if x.get('accn') == ref_accn and x.get('end') == ref_end]
                 if matches:
                     fy = [x for x in matches if x.get('fp') == 'FY']
                     return (fy or matches)[-1]['val']
-            # Fall back to matching by end date only
             matches = [
                 x for x in units
                 if x.get('end') == ref_end and x.get('form') in ('10-K', '10-K/A')
@@ -201,8 +199,6 @@ def extract_financial_timeseries(facts):
         op_income = get_same_period_val('OperatingIncomeLoss', ref_accn, end_date)
         if op_income is not None:
             om = op_income / revenue_val * 100
-            # Op margin outside [-100%, 100%] usually means revenue is a segment
-            # figure while op income is consolidated, or vice versa — skip these.
             if -100 <= om <= 100:
                 row['operating_margin_pct'] = round(om, 1)
 
@@ -280,37 +276,39 @@ def extract_proxy_data(proxy_json, person_name):
 
 def main():
     print("Loading ticker map...", flush=True)
-    cik_persons, person_tickers = load_ticker_map()
-    all_ciks = sorted(cik_persons.keys())
+    cik_to_ticker, cik_persons, person_tickers = load_ticker_map()
+    all_ciks = sorted(cik_to_ticker.keys())
     print(f"  {len(all_ciks)} CIKs, {len(person_tickers)} unique persons")
 
-    # Build name lookup: person_slug → human name (for proxy matching)
-    # Read from ticker_map + derive from slug
     def slug_to_name(slug):
         """Convert 'elon_musk' to 'Elon Musk'."""
         return ' '.join(w.capitalize() for w in slug.split('_'))
 
     # Collect data
-    entity_rows = {}  # person → {ticker, cik, ipo_year, ...}
-    revenue_rows = []  # (person, year, revenue_m)
-    gm_rows = []  # (person, year, gross_margin_pct)
-    om_rows = []  # (person, year, operating_margin_pct)
+    company_entities = {}  # ticker → {cik, company_name, ipo_year}
+    person_entities = {}   # person → {ticker, equity_stake_pct, ...}
+    revenue_rows = []      # (ticker, year, revenue_m)
+    gm_rows = []           # (ticker, year, gross_margin_pct)
+    om_rows = []           # (ticker, year, operating_margin_pct)
 
     xbrl_found = 0
     proxy_found = 0
 
     for cik in all_ciks:
+        ticker = cik_to_ticker[cik]
         persons_for_cik = cik_persons[cik]
 
         # ── XBRL ──
         xbrl_path = os.path.join(XBRL_DIR, f"{cik}.json")
         timeseries = {}
         ipo_year = None
+        company_name = None
         if os.path.exists(xbrl_path):
             with open(xbrl_path) as f:
                 facts = json.load(f)
             timeseries = extract_financial_timeseries(facts)
             ipo_year = extract_ipo_year(facts)
+            company_name = facts.get('entityName')
             if timeseries:
                 xbrl_found += 1
 
@@ -322,80 +320,90 @@ def main():
                 proxy_json = json.load(f)
             proxy_found += 1
 
-        # ── Assign to persons ──
-        for person, ticker in persons_for_cik:
+        # ── Company entity (one per ticker) ──
+        company = {'cik': cik}
+        if company_name:
+            company['company_name'] = company_name
+        if ipo_year:
+            company['ipo_year'] = ipo_year
+        company_entities[ticker] = company
+
+        # ── Company-level timeseries ──
+        for year, metrics in timeseries.items():
+            if 'revenue_m' in metrics:
+                revenue_rows.append((ticker, year, metrics['revenue_m']))
+            if 'gross_margin_pct' in metrics:
+                gm_rows.append((ticker, year, metrics['gross_margin_pct']))
+            if 'operating_margin_pct' in metrics:
+                om_rows.append((ticker, year, metrics['operating_margin_pct']))
+
+        # ── Person-level data (proxy: comp + ownership) ──
+        for person, pticker in persons_for_cik:
             name = slug_to_name(person)
-
-            # Entity data
-            entity = {'ticker': ticker, 'cik': cik}
-            if ipo_year:
-                entity['ipo_year'] = ipo_year
-
-            # Proxy data
+            entity = {'ticker': ticker}
             if proxy_json:
                 proxy_data = extract_proxy_data(proxy_json, name)
                 entity.update(proxy_data)
-
-            entity_rows[person] = entity
-
-            # Timeseries data
-            for year, metrics in timeseries.items():
-                if 'revenue_m' in metrics:
-                    revenue_rows.append((person, year, metrics['revenue_m']))
-                if 'gross_margin_pct' in metrics:
-                    gm_rows.append((person, year, metrics['gross_margin_pct']))
-                if 'operating_margin_pct' in metrics:
-                    om_rows.append((person, year, metrics['operating_margin_pct']))
+            person_entities[person] = entity
 
     # ── Write outputs ──
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    # Entities
-    entity_cols = ['person', 'ticker', 'cik', 'ipo_year', 'equity_stake_pct',
-                   'voting_control_pct', 'total_comp_m', 'base_salary_k', 'stock_awards_m']
-    entity_path = os.path.join(OUTPUT_DIR, 'ddf--entities--person.csv')
-    with open(entity_path, 'w', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=entity_cols, extrasaction='ignore')
+    # Company entities
+    company_cols = ['company', 'cik', 'company_name', 'ipo_year']
+    company_path = os.path.join(OUTPUT_DIR, 'ddf--entities--company.csv')
+    with open(company_path, 'w', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=company_cols, extrasaction='ignore')
         writer.writeheader()
-        for person in sorted(entity_rows.keys()):
-            row = {'person': person}
-            row.update(entity_rows[person])
+        for ticker in sorted(company_entities.keys()):
+            row = {'company': ticker}
+            row.update(company_entities[ticker])
             writer.writerow(row)
+    print(f"\nCompany entities: {len(company_entities)} tickers")
 
-    entities_with_data = sum(1 for e in entity_rows.values() if len(e) > 2)
-    print(f"\nEntities: {len(entity_rows)} total, {entities_with_data} with proxy/financial data")
+    # Person entities (EDGAR-specific properties)
+    person_cols = ['person', 'ticker', 'equity_stake_pct', 'voting_control_pct',
+                   'total_comp_m', 'base_salary_k', 'stock_awards_m']
+    person_path = os.path.join(OUTPUT_DIR, 'ddf--entities--person.csv')
+    with open(person_path, 'w', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=person_cols, extrasaction='ignore')
+        writer.writeheader()
+        for person in sorted(person_entities.keys()):
+            row = {'person': person}
+            row.update(person_entities[person])
+            writer.writerow(row)
+    print(f"Person entities: {len(person_entities)} persons")
 
-    # Fill rate stats
-    for col in entity_cols[1:]:
-        filled = sum(1 for e in entity_rows.values() if e.get(col) is not None and e.get(col) != '')
-        print(f"  {col}: {filled}/{len(entity_rows)}")
+    for col in person_cols[1:]:
+        filled = sum(1 for e in person_entities.values() if e.get(col) is not None and e.get(col) != '')
+        print(f"  {col}: {filled}/{len(person_entities)}")
 
-    # Revenue datapoints
-    revenue_path = os.path.join(OUTPUT_DIR, 'ddf--datapoints--revenue_m--by--person--time.csv')
+    # Revenue datapoints (keyed by company)
+    revenue_path = os.path.join(OUTPUT_DIR, 'ddf--datapoints--revenue_m--by--company--time.csv')
     with open(revenue_path, 'w', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow(['person', 'time', 'revenue_m'])
+        writer.writerow(['company', 'time', 'revenue_m'])
         for row in sorted(revenue_rows):
             writer.writerow(row)
-    print(f"\nRevenue datapoints: {len(revenue_rows)} rows ({len(set(r[0] for r in revenue_rows))} persons)")
+    print(f"\nRevenue datapoints: {len(revenue_rows)} rows ({len(set(r[0] for r in revenue_rows))} companies)")
 
-    # Gross margin datapoints
-    gm_path = os.path.join(OUTPUT_DIR, 'ddf--datapoints--gross_margin_pct--by--person--time.csv')
+    # Gross margin datapoints (keyed by company)
+    gm_path = os.path.join(OUTPUT_DIR, 'ddf--datapoints--gross_margin_pct--by--company--time.csv')
     with open(gm_path, 'w', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow(['person', 'time', 'gross_margin_pct'])
+        writer.writerow(['company', 'time', 'gross_margin_pct'])
         for row in sorted(gm_rows):
             writer.writerow(row)
-    print(f"Gross margin datapoints: {len(gm_rows)} rows ({len(set(r[0] for r in gm_rows))} persons)")
+    print(f"Gross margin datapoints: {len(gm_rows)} rows ({len(set(r[0] for r in gm_rows))} companies)")
 
-    # Operating margin datapoints
-    om_path = os.path.join(OUTPUT_DIR, 'ddf--datapoints--operating_margin_pct--by--person--time.csv')
+    # Operating margin datapoints (keyed by company)
+    om_path = os.path.join(OUTPUT_DIR, 'ddf--datapoints--operating_margin_pct--by--company--time.csv')
     with open(om_path, 'w', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow(['person', 'time', 'operating_margin_pct'])
+        writer.writerow(['company', 'time', 'operating_margin_pct'])
         for row in sorted(om_rows):
             writer.writerow(row)
-    print(f"Operating margin datapoints: {len(om_rows)} rows ({len(set(r[0] for r in om_rows))} persons)")
+    print(f"Operating margin datapoints: {len(om_rows)} rows ({len(set(r[0] for r in om_rows))} companies)")
 
     print(f"\nXBRL files with data: {xbrl_found}/{len(all_ciks)}")
     print(f"Proxy files loaded: {proxy_found}/{len(all_ciks)}")
