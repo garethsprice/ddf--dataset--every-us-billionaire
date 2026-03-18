@@ -1,6 +1,10 @@
 # debugging folder
 _debug/
 
+# SEC EDGAR raw source data (re-downloadable via update_source_edgar.py)
+etl/source/edgar/xbrl/
+etl/source/edgar/proxy/
+
 # Tempfiles of OSX/Win
 Thumbs.db
 .DS_Store
