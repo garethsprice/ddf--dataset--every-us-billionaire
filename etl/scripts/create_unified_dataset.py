@@ -91,24 +91,7 @@ unified_worth["worth"] = unified_worth["worth"] * unified_worth["time"].map(rate
 # convert to millions
 unified_worth["worth"] = (unified_worth["worth"] * 1000).astype(int)
 
-unified_worth.sort_values(by=["person", "time"]).to_csv(
-    "../../ddf--datapoints--worth--by--person--time.csv", index=False
-)
-
-# assume 3% of wealth to be the annual income of billionaires. calculate annual income and daily income (annual / 365.) for them
-# convert the unit to one dollar and just use int.
-income_df = unified_worth.copy()
-income_df["annual_income"] = (income_df["worth"] * 1_000_000 * 0.03).astype(int)
-income_df["daily_income"] = (income_df["annual_income"] / 365).astype(int)
-
-# create csv for each indicator.
-income_df[["person", "time", "annual_income"]].sort_values(by=["person", "time"]).to_csv(
-    "../../ddf--datapoints--annual_income--by--person--time.csv", index=False
-)
-
-income_df[["person", "time", "daily_income"]].sort_values(by=["person", "time"]).to_csv(
-    "../../ddf--datapoints--daily_income--by--person--time.csv", index=False
-)
+# NOTE: worth/income CSVs are written after the US filter below
 
 # create entity for person
 
@@ -221,7 +204,34 @@ final_cols = [
 ] + [c for c in edgar_cols if c in unified_person_final.columns]
 unified_person_final = unified_person_final[final_cols]
 
+# Filter to US individuals only
+us_before = len(unified_person_final)
+unified_person_final = unified_person_final[unified_person_final["country"] == "usa"].copy()
+print(f"US filter: {us_before} → {len(unified_person_final)} persons")
+
+# Also filter worth datapoints to US persons only
+us_persons = set(unified_person_final["person"])
+unified_worth = unified_worth[unified_worth["person"].isin(us_persons)].copy()
+print(f"US worth datapoints: {len(unified_worth)} rows")
+
 unified_person_final.to_csv("../../ddf--entities--person.csv", index=False)
+
+# Write worth and income datapoints (after US filter)
+unified_worth.sort_values(by=["person", "time"]).to_csv(
+    "../../ddf--datapoints--worth--by--person--time.csv", index=False
+)
+
+income_df = unified_worth.copy()
+income_df["annual_income"] = (income_df["worth"] * 1_000_000 * 0.03).astype(int)
+income_df["daily_income"] = (income_df["annual_income"] / 365).astype(int)
+
+income_df[["person", "time", "annual_income"]].sort_values(by=["person", "time"]).to_csv(
+    "../../ddf--datapoints--annual_income--by--person--time.csv", index=False
+)
+
+income_df[["person", "time", "daily_income"]].sort_values(by=["person", "time"]).to_csv(
+    "../../ddf--datapoints--daily_income--by--person--time.csv", index=False
+)
 
 unified_person_final
 
@@ -316,8 +326,9 @@ for dpf in edgar_datapoint_files:
     dst = "../../" + dpf
     if os.path.exists(src):
         df = pd.read_csv(src)
+        df = df[df["person"].isin(us_persons)]
         df.sort_values(by=["person", "time"]).to_csv(dst, index=False)
-        print(f"Copied {dpf}: {len(df)} rows")
+        print(f"Copied {dpf}: {len(df)} rows (US only)")
     else:
         print(f"WARNING: {src} not found, skipping")
 
