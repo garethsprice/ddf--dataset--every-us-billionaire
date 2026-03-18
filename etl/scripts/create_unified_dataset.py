@@ -4,11 +4,13 @@ A notebook to connect hurun and forbes lists to a unified dataset.
 
 import pandas as pd
 import json
+import os
 
 mapping_file = "../intermediate/mapping.json"
 
 forbes_data_folder = "../intermediate/forbes"
 hurun_data_folder = "../intermediate/hurun"
+edgar_data_folder = "../intermediate/edgar"
 
 
 mapping = json.load(open(mapping_file, "r"))
@@ -184,7 +186,26 @@ for person_id in missing_country_persons:
         print(f"Mapping for {person_id} (missing country, multiple hurun IDs): {m}")
 
 
+# Merge EDGAR entity data (ticker, cik, ipo_year, comp, ownership)
+edgar_entity_file = edgar_data_folder + "/ddf--entities--person.csv"
+if os.path.exists(edgar_entity_file):
+    edgar_person = pd.read_csv(edgar_entity_file, dtype={"cik": str, "ipo_year": "Int64"})
+    unified_person_final = unified_person_final.merge(edgar_person, on="person", how="left")
+    print(f"EDGAR entity merge: {edgar_person.shape[0]} rows joined, {edgar_person.columns.tolist()}")
+else:
+    print("WARNING: EDGAR entity file not found, skipping EDGAR merge")
+
 # output to entity
+edgar_cols = [
+    "ticker",
+    "cik",
+    "ipo_year",
+    "equity_stake_pct",
+    "voting_control_pct",
+    "total_comp_m",
+    "base_salary_k",
+    "stock_awards_m",
+]
 final_cols = [
     "person",
     "name",
@@ -197,7 +218,7 @@ final_cols = [
     "company",
     "source",
     "title",
-]
+] + [c for c in edgar_cols if c in unified_person_final.columns]
 unified_person_final = unified_person_final[final_cols]
 
 unified_person_final.to_csv("../../ddf--entities--person.csv", index=False)
@@ -284,6 +305,23 @@ per_million_df.sort_values(by=["country", "time"]).to_csv(
 per_million_df
 
 
+# Copy EDGAR datapoint files to final output
+edgar_datapoint_files = [
+    "ddf--datapoints--revenue_m--by--person--time.csv",
+    "ddf--datapoints--gross_margin_pct--by--person--time.csv",
+    "ddf--datapoints--operating_margin_pct--by--person--time.csv",
+]
+for dpf in edgar_datapoint_files:
+    src = edgar_data_folder + "/" + dpf
+    dst = "../../" + dpf
+    if os.path.exists(src):
+        df = pd.read_csv(src)
+        df.sort_values(by=["person", "time"]).to_csv(dst, index=False)
+        print(f"Copied {dpf}: {len(df)} rows")
+    else:
+        print(f"WARNING: {src} not found, skipping")
+
+
 # create concepts
 # 1. load concepts from open_numbers name space
 concepts_on = pd.read_csv("../source/ddf--concepts.csv")
@@ -307,6 +345,18 @@ person_concepts_data = [
 ]
 person_concepts = pd.DataFrame(person_concepts_data)
 
+edgar_entity_concepts_data = [
+    {"concept": "ticker", "name": "Ticker Symbol", "concept_type": "string", "domain": "person"},
+    {"concept": "cik", "name": "SEC CIK", "concept_type": "string", "domain": "person"},
+    {"concept": "ipo_year", "name": "IPO Year", "concept_type": "string", "domain": "person"},
+    {"concept": "equity_stake_pct", "name": "Equity Stake (%)", "concept_type": "measure", "domain": "person"},
+    {"concept": "voting_control_pct", "name": "Voting Control (%)", "concept_type": "measure", "domain": "person"},
+    {"concept": "total_comp_m", "name": "Total Compensation ($M)", "concept_type": "measure", "domain": "person"},
+    {"concept": "base_salary_k", "name": "Base Salary ($K)", "concept_type": "measure", "domain": "person"},
+    {"concept": "stock_awards_m", "name": "Stock Awards ($M)", "concept_type": "measure", "domain": "person"},
+]
+edgar_entity_concepts = pd.DataFrame(edgar_entity_concepts_data)
+
 measures_data = [
     {"concept": "worth", "name": "Net Worth (millions, 2021 USD)", "concept_type": "measure"},
     {"concept": "annual_income", "name": "Annual Income (2021 USD)", "concept_type": "measure"},
@@ -326,11 +376,14 @@ measures_data = [
         "name": "Dollar billionaires per million people",
         "concept_type": "measure",
     },
+    {"concept": "revenue_m", "name": "Revenue ($M)", "concept_type": "measure"},
+    {"concept": "gross_margin_pct", "name": "Gross Margin (%)", "concept_type": "measure"},
+    {"concept": "operating_margin_pct", "name": "Operating Margin (%)", "concept_type": "measure"},
 ]
 measures = pd.DataFrame(measures_data)
 
 # 3. Combine all concepts and save
-all_concepts = pd.concat([concepts_on, person_concepts, measures], ignore_index=True)
+all_concepts = pd.concat([concepts_on, person_concepts, edgar_entity_concepts, measures], ignore_index=True)
 all_concepts.to_csv("../../ddf--concepts.csv", index=False)
 
 all_concepts
