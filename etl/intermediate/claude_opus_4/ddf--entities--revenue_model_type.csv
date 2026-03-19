@@ -1,0 +1,20 @@
+revenue_model_type,name
+advertising,Advertising
+construction,Construction
+diversified,Diversified
+energy_resources,Energy/Resources
+financial_services,Financial Services
+food_beverage,Food/Beverage
+healthcare,Healthcare
+licensing_royalties,Licensing/Royalties
+management_fees,Management Fees
+media_entertainment,Media/Entertainment
+other,Other
+platform_marketplace,Platform/Marketplace
+product_sales,Product Sales
+professional_services,Professional Services
+real_estate,Real Estate
+retail,Retail
+saas_subscription,SaaS/Subscription
+telecom,Telecom
+transaction_commission,Transaction/Commission
