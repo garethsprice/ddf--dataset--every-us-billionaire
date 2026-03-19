@@ -166,7 +166,7 @@ async def main():
         params={
             "command": "/home/semio/src/work/gapminder/datasets/repo/github.com/open-numbers/.venv/bin/python",
             "args": [
-                "/home/semio/src/work/gapminder/datasets/repo/github.com/open-numbers/ddf--gapminder--billionaires/etl/scripts/mcp_name_matcher.py"
+                "/home/semio/src/work/gapminder/datasets/repo/github.com/open-numbers/ddf--dataset--every-us-billionaire/etl/scripts/mcp_name_matcher.py"
             ],
         },
         client_session_timeout_seconds=60,

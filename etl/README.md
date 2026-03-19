@@ -1,4 +1,4 @@
-# ETL: Update Workflow for `ddf--gapminder--billionaires`
+# ETL: Update Workflow for `ddf--dataset--every-us-billionaire`
 
 This document explains the end-to-end process to update the dataset.
 

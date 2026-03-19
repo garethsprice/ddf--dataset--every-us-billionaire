@@ -1,6 +1,6 @@
 # Scripts Index
 
-This folder contains scripts for building and maintaining the `ddf--gapminder--billionaires` dataset.
+This folder contains scripts for building and maintaining the `ddf--dataset--every-us-billionaire` dataset.
 
 Use this index to distinguish the **active pipeline** from **utility/experimental** scripts.
 
