@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 import os
 import datetime
 
@@ -25,6 +26,7 @@ def transform_forbes_data(source_dir, output_dir):
     all_files.sort()
 
     datapoints_list = []
+    rank_list = []
     entities_map = {}
 
     for file in all_files:
@@ -49,6 +51,11 @@ def transform_forbes_data(source_dir, output_dir):
             worth_in_billions = row["worth"] / 1000
 
             datapoints_list.append({"person": person_id, "year": year, "worth": worth_in_billions})
+
+            # Extract rank if available
+            rank = row.get("rank", None)
+            if rank is not None and not pd.isna(rank):
+                rank_list.append({"person": person_id, "year": year, "rank": int(rank)})
 
             image_uri = row.get("imageUri", "")
 
@@ -90,6 +97,108 @@ def transform_forbes_data(source_dir, output_dir):
         index=False,
     )
     entities_df.to_csv(os.path.join(output_dir, "ddf--entities--person.csv"), index=False)
+
+    # Write rank datapoints
+    rank_df = pd.DataFrame(rank_list)
+    if not rank_df.empty:
+        rank_df = rank_df.sort_values(by=["person", "year"])
+        rank_df.to_csv(
+            os.path.join(output_dir, "ddf--datapoints--rank--by--person--year.csv"),
+            index=False,
+        )
+        print(f"Rank datapoints: {len(rank_df)} rows")
+
+    # Extract profile data from profile JSONs
+    profiles_dir = os.path.join(source_dir, "profiles")
+    if os.path.exists(profiles_dir):
+        profile_list = []
+        education_list = []
+        for fname in sorted(os.listdir(profiles_dir)):
+            if not fname.endswith(".json"):
+                continue
+            try:
+                with open(os.path.join(profiles_dir, fname)) as f:
+                    data = json.load(f)
+                person_data = data.get("person", data)
+                uri = person_data.get("uri", fname.replace(".json", ""))
+                person_id = uri.replace("-", "_")
+
+                row = {"person": person_id}
+
+                # Self-made fields
+                if person_data.get("selfMadeRank") is not None:
+                    row["self_made_score"] = int(person_data["selfMadeRank"])
+                if person_data.get("selfMadeType") is not None:
+                    row["self_made_type"] = str(person_data["selfMadeType"])
+
+                # Birth date (epoch ms → YYYY-MM-DD)
+                bd = person_data.get("birthDate")
+                if bd is not None:
+                    try:
+                        dt = datetime.datetime.fromtimestamp(bd / 1000, tz=datetime.timezone.utc)
+                        row["birth_date"] = dt.strftime("%Y-%m-%d")
+                    except (ValueError, OSError):
+                        pass
+
+                # Location
+                if person_data.get("city"):
+                    row["city"] = str(person_data["city"])
+                if person_data.get("stateProvince"):
+                    row["state"] = str(person_data["stateProvince"])
+
+                # Demographics
+                if person_data.get("maritalStatus"):
+                    row["marital_status"] = str(person_data["maritalStatus"])
+                if person_data.get("numberOfChildren") is not None:
+                    row["number_of_children"] = int(person_data["numberOfChildren"])
+
+                # Birth country/city/state
+                if person_data.get("birthCountry"):
+                    row["birth_country"] = str(person_data["birthCountry"])
+                if person_data.get("birthCity"):
+                    row["birth_city"] = str(person_data["birthCity"])
+                if person_data.get("birthState"):
+                    row["birth_state"] = str(person_data["birthState"])
+
+                # Philanthropy score (from personLists billionaires entry)
+                for entry in person_data.get("personLists", []):
+                    if entry.get("listUri") == "billionaires" and entry.get("philanthropyScore") is not None:
+                        row["philanthropy_score"] = int(entry["philanthropyScore"])
+                        break
+
+                if len(row) > 1:
+                    profile_list.append(row)
+
+                # Education (normalized)
+                for i, edu in enumerate(person_data.get("educations", []), start=1):
+                    education_list.append({
+                        "person": person_id,
+                        "education_order": i,
+                        "school": edu.get("school", ""),
+                        "degree": edu.get("degree", ""),
+                    })
+
+            except (json.JSONDecodeError, KeyError):
+                continue
+
+        if profile_list:
+            profile_df = pd.DataFrame(profile_list).sort_values("person")
+            profile_df.to_csv(
+                os.path.join(output_dir, "ddf--entities--person--profile.csv"),
+                index=False,
+            )
+            counts = {col: profile_df[col].notna().sum() for col in profile_df.columns if col != "person"}
+            print(f"Profile data: {len(profile_df)} rows — " + ", ".join(f"{k}={v}" for k, v in sorted(counts.items())))
+
+        if education_list:
+            education_df = pd.DataFrame(education_list).sort_values(["person", "education_order"])
+            education_df.to_csv(
+                os.path.join(output_dir, "ddf--entities--person--education.csv"),
+                index=False,
+            )
+            print(f"Education data: {len(education_df)} rows ({education_df['person'].nunique()} persons)")
+    else:
+        print(f"WARNING: {profiles_dir} not found, skipping profile extraction")
 
 
 if __name__ == "__main__":
