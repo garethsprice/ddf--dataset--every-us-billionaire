@@ -1,4 +1,4 @@
-person,claim,source_url,verdict
+major_lawsuit,name,source_url,verdict
 albert_nahmad,,,FALSE
 alexander_karp,"Palantir DOL discrimination lawsuit (2016), settled 2017 for $1.7M",https://www.dol.gov/newsroom/releases/ofccp/ofccp20170425,TRUE
 alice_walton,Fatal car accident (1989); 1998 DWI conviction; 2011 DWI arrest,https://www.nytimes.com/2012/12/01/business/walmart-heiress-quietly-settles-fatal-2011-accident-case.html,PARTIAL

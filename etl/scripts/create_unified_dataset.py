@@ -316,13 +316,13 @@ print(f"Cofounder links: {linked} persons linked across {sum(1 for v in company_
 
 # Clean major_lawsuits using verified data: clear FALSE/fabricated entries,
 # update PARTIAL entries with corrected claims, clear "none" variants
-lawsuit_verified_file = llm_data_folder + "/major_lawsuits_verified.csv"
+lawsuit_verified_file = llm_data_folder + "/ddf--entities--major_lawsuit.csv"
 if os.path.exists(lawsuit_verified_file):
     lawsuit_verified = pd.read_csv(lawsuit_verified_file)
     # Build lookup: person -> (verdict, corrected_claim)
     lawsuit_lookup = {}
     for _, row in lawsuit_verified.iterrows():
-        lawsuit_lookup[row["person"]] = (row["verdict"], row["claim"])
+        lawsuit_lookup[row["major_lawsuit"]] = (row["verdict"], row["name"])
 
     # Persons with FALSE verdicts -> clear their major_lawsuits
     false_persons = {p for p, (v, _) in lawsuit_lookup.items() if v == "FALSE"}
@@ -391,10 +391,11 @@ else:
     print("WARNING: Forbes education file not found, skipping")
 
 # Write verified lawsuit datapoints (from compile_lawsuits.py output)
-lawsuit_verified_file = llm_data_folder + "/major_lawsuits_verified.csv"
+lawsuit_verified_file = llm_data_folder + "/ddf--entities--major_lawsuit.csv"
 if os.path.exists(lawsuit_verified_file):
     lawsuit_df = pd.read_csv(lawsuit_verified_file)
     # Filter to US persons only, exclude FALSE verdicts (only TRUE + PARTIAL get datapoints)
+    lawsuit_df = lawsuit_df.rename(columns={"major_lawsuit": "person", "name": "claim"})
     lawsuit_df = lawsuit_df[lawsuit_df["person"].isin(us_persons)].copy()
     lawsuit_df = lawsuit_df[lawsuit_df["verdict"] != "FALSE"].copy()
     # Build DDF datapoints format: person, major_lawsuit_order, major_lawsuit_claim, major_lawsuit_source_url
@@ -407,7 +408,7 @@ if os.path.exists(lawsuit_verified_file):
     )
     print(f"Lawsuit datapoints: {len(lawsuit_dp)} rows ({lawsuit_dp['person'].nunique()} US persons)")
 else:
-    print("WARNING: major_lawsuits_verified.csv not found, skipping lawsuit datapoints")
+    print("WARNING: ddf--entities--major_lawsuit.csv not found, skipping lawsuit datapoints")
 
 # Write worth and income datapoints (after US filter)
 unified_worth.sort_values(by=["person", "time"]).to_csv(
