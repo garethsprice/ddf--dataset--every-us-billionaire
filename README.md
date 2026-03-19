@@ -1,6 +1,6 @@
-# Gapminder Billionaires Dataset
+# Every US Billionaire
 
-A DDF dataset of **1,324 US dollar billionaires** (1997–2025) with 97 attributes per person, built by combining and harmonizing data from multiple sources:
+A DDF dataset of **1,324 US dollar billionaires** (1997–2025) with 97 attributes per person. This is a US-focused, research-augmented fork of the [Gapminder Billionaires](https://github.com/open-numbers/ddf--gapminder--billionaires) global dataset, built by combining and harmonizing data from multiple sources:
 
 - [Forbes Billionaires List](https://www.forbes.com/billionaires/) — net worth time series, rank, demographics, education
 - [Hurun Global Rich List](https://www.hurun.net/en-US/Rank/HsRankDetails?pagetype=global) — supplementary wealth data and Chinese names
