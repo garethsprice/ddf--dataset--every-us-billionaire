@@ -1,0 +1,370 @@
+person,book_type,title,author,year,ol_work_id
+elon_musk,biography,Elon Musk,Walter Isaacson,2023,OL35720357W
+elon_musk,biography,"Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future",Ashlee Vance,2015,OL37629577W
+larry_page,biography,In the Plex,Steven Levy,2011,OL16114174W
+larry_page,biography,The Google Guys,Richard L. Brandt,2009,OL17420483W
+sergey_brin,biography,In the Plex,Steven Levy,2011,OL16114174W
+sergey_brin,biography,The Google Guys,Richard L. Brandt,2009,OL17420483W
+jeff_bezos,autobiography,Invent and Wander: The Collected Writings of Jeff Bezos,,2020,
+jeff_bezos,biography,The Everything Store: Jeff Bezos and the Age of Amazon,Brad Stone,2013,
+jeff_bezos,biography,Amazon Unbound: Jeff Bezos and the Invention of a Global Empire,Brad Stone,2021,
+mark_zuckerberg,biography,The Accidental Billionaires: The Founding of Facebook,Ben Mezrich,2009,OL14924461W
+mark_zuckerberg,biography,The Facebook Effect: The Inside Story of the Company That Is Connecting the World,David Kirkpatrick,2010,
+larry_ellison,biography,The Difference Between God and Larry Ellison,Mike Wilson,1997,OL2675723W
+larry_ellison,biography,Softwar: An Intimate Portrait of Larry Ellison and Oracle,Matthew Symonds,2003,
+jensen_huang,biography,The Nvidia Way: Jensen Huang and the Making of a Tech Giant,Tae Kim,2024,
+jensen_huang,biography,"The Thinking Machine: Jensen Huang, Nvidia, and the World's Most Coveted Microchip",Stephen Witt,2025,
+warren_buffett,autobiography,The Essays of Warren Buffett: Lessons for Corporate America,,1997,OL40369866W
+warren_buffett,biography,Buffett: The Making of an American Capitalist,Roger Lowenstein,1995,
+warren_buffett,biography,The Snowball: Warren Buffett and the Business of Life,Alice Schroeder,2008,
+warren_buffett,biography,Of Permanent Value: The Story of Warren Buffett,Andrew Kilpatrick,1994,OL3542790W
+michael_dell,autobiography,Direct from Dell,,1999,OL261733W
+steve_ballmer,biography,Bad Boy Ballmer: The Man Who Rules Microsoft,Fredric Alan Maxwell,2002,
+michael_bloomberg,autobiography,Bloomberg by Bloomberg,,1997,OL3359071W
+michael_bloomberg,biography,The Many Lives of Michael Bloomberg,Eleanor Randolph,2019,OL20128045W
+michael_bloomberg,biography,"Mike Bloomberg: Money, Power, Politics",Joyce Purnick,2010,
+bill_gates,autobiography,Source Code: My Beginnings,,2025,
+bill_gates,biography,Hard Drive: Bill Gates and the Making of the Microsoft Empire,James Wallace and Jim Erickson,1992,
+bill_gates,biography,Gates: How Microsoft's Mogul Reinvented an Industry,Stephen Manes and Paul Andrews,1993,
+bill_gates,biography,Overdrive: Bill Gates and the Race to Control Cyberspace,James Wallace,1997,
+bill_gates,biography,Bill Gates: A Biography,Michael B. Becraft,2014,OL1971147W
+charles_koch,biography,Sons of Wichita: How the Koch Brothers Became America's Most Powerful and Private Dynasty,Daniel Schulman,2014,
+charles_koch,biography,Kochland: The Secret History of Koch Industries and Corporate Power in America,Christopher Leonard,2019,
+stephen_schwarzman,autobiography,What It Takes,,2019,OL21915467W
+stephen_schwarzman,biography,"King of Capital: The Remarkable Rise, Fall, and Rise Again of Steve Schwarzman and Blackstone",David Carey and John E. Morris,2010,
+phil_knight,autobiography,Shoe Dog,,2016,OL17825802W
+phil_knight,biography,Swoosh: The Unauthorized Story of Nike and the Men Who Played There,J.B. Strasser and Laurie Becklund,1991,
+melinda_french_gates,autobiography,The Moment of Lift: How Empowering Women Changes the World,,2019,OL19666672W
+peter_thiel,biography,The Contrarian: Peter Thiel and the Rise of the Silicon Valley Oligarchs,Max Chafkin,2021,
+steve_cohen,biography,"Black Edge: Inside Information, Dirty Money, and the Quest to Bring Down the Most Wanted Man on Wall Street",Sheelah Kolhatkar,2017,
+rupert_murdoch,biography,Rupert Murdoch,Simon Regan,1976,OL6728796W
+rupert_murdoch,biography,Rupert Murdoch's China adventures,Bruce Dover,2008,OL11885790W
+jerry_jones,biography,King of the Cowboys,Jim Dent,1995,OL2951559W
+jerry_jones,biography,Playing to Win: Jerry Jones and the Dallas Cowboys,David Magee,2008,
+donald_bren,biography,"The Irvine Ranch: Fulfilling the Vision, 1977–2025",H. Pike Oliver and C. Michael Stockstill,2026,
+george_roberts,biography,Barbarians at the Gate: The Fall of RJR Nabisco,Bryan Burrough and John Helyar,1990,OL35328198W
+george_roberts,biography,Merchants of Debt: KKR and the Mortgaging of American Business,George Anders,1992,
+george_roberts,biography,The New Financial Capitalists: Kohlberg Kravis Roberts and the Creation of Corporate Value,George P. Baker and George David Smith,1998,
+henry_kravis,biography,Barbarians at the Gate: The Fall of RJR Nabisco,Bryan Burrough and John Helyar,1990,OL35328198W
+henry_kravis,biography,Merchants of Debt: KKR and the Mortgaging of American Business,George Anders,1992,
+henry_kravis,biography,The New Financial Capitalists: Kohlberg Kravis Roberts and the Creation of Corporate Value,George P. Baker and George David Smith,1998,
+harold_hamm,autobiography,Game Changer: Our Fifty-Year Mission to Secure America's Energy Independence,,2023,
+charles_schwab,autobiography,Invested: Changing Forever the Way Americans Invest,,2019,
+ray_dalio,autobiography,Principles: Life & Work,,2017,OL35866644W
+ray_dalio,biography,"The Fund: Ray Dalio, Bridgewater Associates, and the Unraveling of a Wall Street Legend",Rob Copeland,2023,
+alexander_karp,biography,"The Philosopher in the Valley: Alex Karp, Palantir, and the Rise of the Surveillance State",Michael Steinberger,2025,
+robert_kraft,biography,The Dynasty,Jeff Benedict,2020,OL3775456W
+andy_von_bechtolsheim,biography,The Life and Times of Andy Bechtolsheim,Rhett A. Sadler,2024,
+richard_kinder,biography,"Who Is Richard Kinder?: Power, Ambition, and the Billionaire Who Transformed Energy in America",Kenneth Jackson,2025,
+brian_armstrong,biography,Kings of Crypto: One Startup's Quest to Take Cryptocurrency Out of Silicon Valley and Onto Wall Street,Jeff John Roberts,2020,
+ralph_lauren,autobiography,Ralph Lauren,,2017,OL21210288W
+ralph_lauren,biography,Who is Ralph Lauren?,Jane O'Connor,2017,OL19720339W
+ralph_lauren,biography,Ralph Lauren,Jeffrey A. Trachtenberg,1988,OL3264916W
+ralph_lauren,biography,Vogue on Ralph Lauren,Kathleen Baird-Murray,2014,OL17559353W
+david_steward,autobiography,Doing Business by the Good Book,,2004,OL16515970W
+pierre_omidyar,biography,The Perfect Store: Inside eBay,Adam Cohen,2002,
+pierre_omidyar,biography,Pierre Omidyar: The Founder of eBay,Jennifer Viegas,2006,
+pierre_omidyar,biography,Pierre M. Omidyar: Creator of eBay,Adam Woog,2007,
+andrew_beal,biography,"The Professor, the Banker, and the Suicide King: Inside the Richest Poker Game of All Time",Michael Craig,2005,
+pamela_mars,biography,Crisis in Candyland: Melting the Chocolate Shell of the Mars Family Empire,Jan Pottker,1995,
+pamela_mars,biography,The Emperors of Chocolate: Inside the Secret World of Hershey and Mars,Joël Glenn Brenner,1999,
+marijke_mars,biography,Crisis in Candyland: Melting the Chocolate Shell of the Mars Family Empire,Jan Pottker,1995,
+marijke_mars,biography,The Emperors of Chocolate: Inside the Secret World of Hershey and Mars,Joël Glenn Brenner,1999,
+valerie_mars,biography,Crisis in Candyland: Melting the Chocolate Shell of the Mars Family Empire,Jan Pottker,1995,
+valerie_mars,biography,The Emperors of Chocolate: Inside the Secret World of Hershey and Mars,Joël Glenn Brenner,1999,
+victoria_mars,biography,Crisis in Candyland: Melting the Chocolate Shell of the Mars Family Empire,Jan Pottker,1995,
+victoria_mars,biography,The Emperors of Chocolate: Inside the Secret World of Hershey and Mars,Joël Glenn Brenner,1999,
+arthur_blank,autobiography,Good Company,,2020,OL24152406W
+john_malone,autobiography,Born to Be Wired,,2025,OL44548638W
+john_malone,biography,Cable Cowboy: John Malone and the Rise of the Modern Cable Business,Mark Robichaux,2002,
+fred_smith,biography,"Overnight Success: Federal Express and Frederick Smith, Its Renegade Creator",Vance Trimble,1993,
+fred_smith,biography,Frederick W. Smith: Founder of FedEx,Sheila Wyborny,2007,
+stanley_druckenmiller,biography,Almanack of Stanley Druckenmiller,Rui Zhi Dong,2022,OL29225347W
+steven_spielberg,biography,Steven Spielberg: A Biography,Joseph McBride,1997,
+steven_spielberg,biography,Steven Spielberg: The Unauthorised Biography,John Baxter,1996,OL18179657W
+steven_spielberg,biography,Steven Spielberg: A Retrospective,Richard Schickel,2012,
+riley_bechtel,biography,The Profiteers: Bechtel and the Men Who Built the World,Sally Denton,2016,
+kenneth_langone,autobiography,I Love Capitalism!,,2018,OL21196841W
+brian_chesky,biography,"The Airbnb Story: How Three Ordinary Guys Disrupted an Industry, Made Billions and Created Plenty of Controversy",Leigh Gallagher,2017,
+william_ackman,biography,Confidence Game: How Hedge Fund Manager Bill Ackman Called Wall Street's Bluff,Christine S. Richard,2010,
+marc_benioff,autobiography,Trailblazer: The Power of Business as the Greatest Platform for Change,,2019,
+mat_ishbia,autobiography,Running the Corporate Offense: Lessons in Effective Leadership from the Bench to the Board Room,,2019,
+david_geffen,biography,"The Operator: David Geffen Builds, Buys, and Sells the New Hollywood",Tom King,2000,
+david_geffen,biography,The Rise and Rise of David Geffen,Stephen Singular,1997,OL2676963W
+lynsi_snyder,autobiography,The Ins-N-Outs of In-N-Out Burger,,2023,
+j_joe_ricketts,autobiography,"The Harder You Work, the Luckier You Get: An Entrepreneur's Memoir",,2019,
+joe_gebbia,biography,"The Airbnb Story: How Three Ordinary Guys Disrupted an Industry, Made Billions and Created Plenty of Controversy",Leigh Gallagher,2017,
+john_overdeck,biography,The Financial Story of John A. Overdeck: From Olympiad Medals to Algorithmic Dominance,Steven G. Cooper,2025,
+philippe_laffont,biography,The Biography of Philippe Laffont: A Visionary Journey Through Technology and Finance,John Eric Kevin,2024,
+judy_faulkner,biography,The Financial Story of Judy Faulkner: From Basement Beginnings to Billion-Dollar Impact,Steven G. Cooper,2025,
+peggy_cherng,biography,Peggy Cherng: Panda Express Empress,Rebecca Felix,2018,
+peggy_cherng,biography,Peggy Cherng: Co-Founder of Panda Express,Tammy Gagne,2024,
+roger_penske,biography,Racing with Roger Penske,Sigur E. Whitaker,2022,OL27272172W
+thai_lee,biography,A Trailblazer's Journey: The Extraordinary Biography of Thai Lee,Alex Grant,2023,
+michael_milken,autobiography,Faster Cures: Accelerating the Future of Health,,2023,
+michael_milken,biography,The Predators' Ball: The Inside Story of Drexel Burnham and the Rise of the Junk Bond Raiders,Connie Bruck,1988,
+michael_milken,biography,"The Junk Bond Revolution: Michael Milken, Wall Street and the ""Roaring Eighties""",Fenton Bailey,1991,
+michael_milken,biography,Den of Thieves,James B. Stewart,1992,OL46466W
+michael_milken,biography,Highly Confident: The Crime and Punishment of Michael Milken,Jesse Kornbluth,1992,
+george_soros,autobiography,Soros on Soros: Staying Ahead of the Curve,,1995,
+george_soros,biography,"Soros: The Unauthorized Biography, the Life, Times and Trading Secrets of the World's Greatest Investor",Robert Slater,1996,
+george_soros,biography,Soros: The Life and Times of a Messianic Billionaire,Michael T. Kaufman,2002,OL13014275M
+george_soros,biography,George Soros: An Illustrated Biography of the World's Most Powerful Investor,Kaoru Kurotani,2006,
+george_soros,biography,George Soros: The Biography of a Controversial Man,United Library,2022,
+michael_intrator,biography,Michael Intrator: Betting Big on AI: The CEO Who Turned CoreWeave into a $29 Billion Powerhouse,Ellison T. Mason,2025,
+donald_trump,autobiography,"Trump: The Art of the Deal (1987), Trump: Surviving at the Top (1990), Trump: The Art of the Comeback",,1997,
+donald_trump,biography,The Trumps: Three Generations That Built an Empire,Gwenda Blair,2000,
+donald_trump,biography,Lost Tycoon: The Many Lives of Donald J. Trump,Harry Hurt III,1993,
+donald_trump,biography,Trump,Wayne Barrett,1991,OL4484671W
+donald_trump,biography,Trump: The Saga of America's Master Builder,Jerome Tuccille,1985,
+donald_trump,biography,TrumpNation: The Art of Being the Donald,Timothy L. O'Brien,2005,
+donald_trump,biography,Never Enough: Donald Trump and the Pursuit of Success,Michael D'Antonio,2015,
+donald_trump,biography,"Trump Revealed: An American Journey of Ambition, Ego, Money, and Power",Michael Kranish and Marc Fisher,2016,
+donald_trump,biography,The Making of Donald Trump,David Cay Johnston,2016,OL19822581W
+donald_trump,biography,Fire and Fury: Inside the Trump White House,Michael Wolff,2018,OL22706738W
+donald_trump,biography,Donald Trump: Master Apprentice,Gwenda Blair,2005,OL17697639W
+james_clark,autobiography,Netscape Time: The Making of the Billion-Dollar Start-Up That Took on Microsoft,,1999,
+james_clark,biography,The New New Thing: A Silicon Valley Story,Michael Lewis,1999,OL17729593W
+doug_meijer,autobiography,Behind the Smile: Fourteen Surprising Lessons from My Life,,2023,
+howard_lutnick,biography,"On Top of the World: Cantor Fitzgerald, Howard Lutnick, and 9/11 — A Story of Loss and Renewal",Tom Barbash,2003,
+ty_warner,biography,The Great Beanie Baby Bubble: Mass Delusion and the Dark Side of Cute,Zac Bissonnette,2015,
+tom_golisano,autobiography,The Italian Kid Did It: How I Turned $3K into $44B and Achieved the American Dream,,2022,
+ray_lee_hunt,biography,Kingdom: The Story of the Hunt Family of Texas,Jerome Tuccille,1984,
+reed_hastings,biography,Netflixed: The Epic Battle for America's Eyeballs,Gina Keating,2012,
+reed_hastings,biography,Reed Hastings: Building Netflix,Matt Burgess,2021,
+reed_hastings,biography,Reed Hastings and Netflix,Corinne Grinapol,2013,OL17887516W
+mark_cuban,biography,MARK Cuban: The Life & Success Stories of a Shark Billionaire,David Dagen,2016,OL40375170W
+reinhold_schmieding,autobiography,Helping Surgeons Treat Their Patients Better,,2006,
+ronald_wanek,biography,Furniture Is My Passion: How Ron Wanek and Ashley Furniture Revolutionized an Industry,Ken Brekke,2016,
+martha_ingram,biography,Martha Rivers Ingram: No Ordinary Lady,D.B. Kellogg,2008,
+jayshree_ullal,biography,"The Biography of Jayshree Ullal, the President and CEO of Arista Networks",Alex Grant,2023,
+jack_dorsey,biography,"Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",Nick Bilton,2013,OL17715821W
+gordon_getty,biography,Growing Up Getty: The Story of America's Most Unconventional Dynasty,James Reginato,2022,
+george_lucas,biography,Skywalking: The Life and Films of George Lucas,Dale Pollock,1983,OL18178959W
+george_lucas,biography,George Lucas: A Biography,John Baxter,1999,OL11425423M
+george_lucas,biography,George Lucas: A Life,Brian Jay Jones,2016,OL39402429W
+edward_stack,autobiography,It's How We Play the Game: Build a Business. Take a Stand. Make a Difference.,,2019,
+jeff_skoll,biography,Jeffrey Skoll,Kalyani Mookherji,2017,
+issac_perlmutter,biography,The Inspiring Journey of Isaac Perlmutter: The Rise of a Quiet Power Broker,Edward D. Brigham,2025,
+tim_sweeney,biography,Tim Sweeney Biography: Epic Games CEO and Gaming Innovator,Jason T. Morgan,2025,
+stephen_mandel_jr,biography,The Life and Legacy of Stephen Mandel Jr.,Thomas P. Frank,2024,
+stephen_mandel_jr,biography,The Lone Visionary: Stephen Mandel and the Hedge Fund That Endured,Catherine O. Baldwin,2025,
+barry_diller,autobiography,Who Knew,,2025,OL76468W
+barry_diller,biography,Barry Diller,Jerome Tuccille,1998,OL2718404W
+barry_diller,biography,Barry Diller Story,George Mair,1998,OL1697824W
+eren_ozmen,biography,Defying Limits: The Extraordinary Journey of Eren Ozmen,Alex Grant,2023,
+john_catsimatidis,autobiography,How Far Do You Want to Go?,,2023,
+john_catsimatidis,biography,John Catsimatidis: From Harlem Grocer to Global Conglomerate,Julia C. Pan,2025,
+john_catsimatidis,biography,The True Story of John Catsimatidis,Damon K. Morrison,2025,
+gail_miller,autobiography,Courage to Be You: Inspiring Lessons from an Unexpected Journey,,2018,
+dan_snyder,biography,The life of Dan Snyder,Shayne Clinkscales,2006,OL24282250W
+dan_snyder,biography,Dan Snyder,Michael D. Roberto,2022,OL31169838W
+david_filo,biography,Jerry Yang and David Filo: Chief Yahoos of Yahoo,Josepha Sherman,2001,
+david_filo,biography,Jerry Yang and David Filo: The Founders of Yahoo!,Michael R. Weston,2007,
+carl_icahn,biography,King Icahn: The Biography of a Renegade Capitalist,Mark Stevens,1993,
+david_rubenstein,biography,The Iron Triangle: Inside the Secret World of the Carlyle Group,Dan Briody,2003,
+richard_schulze,autobiography,"Becoming the Best: A Journey of Passion, Purpose, and Perseverance",,2011,
+cameron_winklevoss,biography,"Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption",Ben Mezrich,2019,
+tyler_winklevoss,biography,"Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption",Ben Mezrich,2019,
+johnelle_hunt,biography,J.B. Hunt: The Long Haul to Success,Marvin Schwartz,1992,
+bob_parsons,autobiography,Fire in the Hole!: The Untold Story of My Traumatic Life and Explosive Success,,2024,
+mark_shoen,biography,"Birthright: Murder, Greed, and Power in the U-Haul Family Dynasty",Ronald J. Watkins,1993,
+meg_whitman,autobiography,The Power of Many: Values for Success in Business and in Life,,2010,
+meg_whitman,biography,Meg Whitman,Leslie Alan Horvitz,2005,OL5819431W
+david_green,autobiography,More Than a Hobby: How a $600 Startup Became America's Home and Craft Superstore,,2005,
+john_paulson,biography,John Paulson,Stan Miller,2018,OL29580962W
+michael_jordan,autobiography,For the Love of the Game: My Story,,1998,OL32950006W
+michael_jordan,biography,The Jordan Rules,Sam Smith,1991,OL2956765W
+michael_jordan,biography,Playing for Keeps: Michael Jordan and the World He Made,David Halberstam,1999,
+michael_jordan,biography,Michael Jordan: The Life,Roland Lazenby,2014,OL19086551W
+vincent_mcmahon,biography,Ringmaster: Vince McMahon and the Unmaking of America,Abraham Josephine Riesman,2023,
+oprah_winfrey,biography,Oprah!,Robert Waldron,1987,OL2722592W
+oprah_winfrey,biography,Everybody Loves Oprah!: Her Remarkable Life Story,Norman King,1987,
+oprah_winfrey,biography,Oprah Winfrey: The Real Story,George Mair,1994,
+oprah_winfrey,biography,Oprah Winfrey: A Biography,Helen S. Garson,2004,OL11425430M
+oprah_winfrey,biography,Oprah: A Biography,Kitty Kelley,2010,OL17404246W
+oprah_winfrey,biography,Oprah Winfrey: A Little Golden Book Biography,Alliah L. Agostini,2023,
+jayz_shawn_carter,autobiography,Decoded,,2010,OL15481126W
+jayz_shawn_carter,biography,Empire State of Mind: How Jay-Z Went from Street Corner to Corner Office,Zack O'Malley Greenburg,2011,
+travis_kalanick,biography,Super Pumped: The Battle for Uber,Mike Isaac,2019,
+taylor_swift,biography,Taylor Swift,Ziggy Watson,2019,OL29988526W
+taylor_swift,biography,Taylor Swift Biography,Lyricfan,2014,OL36833627W
+taylor_swift,biography,Taylor Swift country's sweetheart,Lexi Ryals,2008,OL9662473W
+kim_kardashian,autobiography,Kardashian Konfidential,,2010,OL16667001W
+kim_kardashian,biography,Kim Kardashian,Sean Smith,2015,OL26492687W
+palmer_luckey,biography,"The History of the Future: Oculus, Facebook, and the Revolution That Swept Virtual Reality",Blake J. Harris,2019,
+sam_altman,biography,"The Optimist: Sam Altman, OpenAI, and the Race to Invent the Future",Keach Hagey,2025,
+sundar_pichai,biography,Pichai: The Future of Google,Jagmohan S. Bhanver,2015,
+kevin_systrom,biography,Instagram: Kevin Systrom and Mike Krieger,Kristen Rajczak Nelson,2014,
+kevin_systrom,biography,Instagram: How Kevin Systrom and Mike Krieger Changed the Way We Take and Share Photos,Rosa Waters,2014,
+mike_krieger,biography,Instagram: Kevin Systrom and Mike Krieger,Kristen Rajczak Nelson,2014,
+mike_krieger,biography,Instagram: How Kevin Systrom and Mike Krieger Changed the Way We Take and Share Photos,Rosa Waters,2014,
+brian_acton,biography,Brian Acton and Jan Koum: From WhatsApp to World Changers,Kalyani Mookherji,2017,
+larry_culp,biography,The Culp Effect: Larry Culp and the Reinvention of GE,Erland T. Malkoff,2025,
+vivek_ramaswamy,biography,Vivek Ramaswamy Biography: The Real Facts Guide to Vivek Ramaswamy,Real Facts,2023,
+bill_gross,biography,Investment secrets from PIMCO's Bill Gross,Timothy Middleton,2004,OL5833860W
+seth_klarman,biography,Beyond the Margin: The Seth Klarman Story,Stephen B. Kern,2025,
+igor_tulchinsky,autobiography,"The UnRules: Man, Machines and the Quest to Master Markets",,2018,
+peter_guber,biography,Hit and Run: How Jon Peters and Peter Guber Took Sony for a Ride in Hollywood,Nancy Griffin & Kim Masters,1996,
+kendra_scott,autobiography,"Born to Shine: Do Good, Find Your Joy, and Build a Life You Love",,2022,
+jim_koch,autobiography,Quench Your Own Thirst: Business Lessons Learned Over a Beer or Two,,2016,
+sara_blakely,biography,The Spanx Story: What's Underneath the Incredible Success of Sara Blakely's Billion Dollar Empire,Charlie Wetzel & Stephanie Wetzel,2020,
+sara_blakely,biography,Sara Blakely: A Biography of the Spanx Billionaire,Olivia Barnes,2018,
+rihanna_robyn_fenty,autobiography,Rihanna,,2019,OL30964446W
+rihanna_robyn_fenty,biography,Rihanna: The Unauthorized Biography,Danny White,2013,
+rihanna_robyn_fenty,biography,Rihanna: Rebel Flower,Chloe Govan,2011,
+rihanna_robyn_fenty,biography,Rihanna: A Little Golden Book Biography,Regina Andreoni,2025,
+beyonce_knowlescarter,biography,Becoming Beyoncé: The Untold Story,J. Randy Taraborrelli,2015,
+beyonce_knowlescarter,biography,Beyoncé: Running the World,Anna Pointer,2014,
+dr_dre_andre_young,biography,Dr. Dre: The Biography,Ronin Ro,2007,OL17728265W
+dr_dre_andre_young,biography,Dr. Dre: A Biography,John Borgmeyer & Holly Lang,2006,
+james_cameron,biography,The Futurist: The Life and Films of James Cameron,Rebecca Keegan,2009,
+james_cameron,biography,James Cameron: An Unauthorized Biography of the Filmmaker,Marc Shapiro,2000,
+james_cameron,biography,James Cameron: A Retrospective,Ian Nathan,2022,
+bruce_springsteen,autobiography,Born to Run,,2016,OL13805586W
+bruce_springsteen,biography,Born to Run: The Bruce Springsteen Story,Dave Marsh,1979,
+bruce_springsteen,biography,Glory Days: Bruce Springsteen in the 1980s,Dave Marsh,1987,
+bruce_springsteen,biography,Bruce,Peter Ames Carlin,2012,OL17872956W
+jerry_seinfield,biography,Seinfeld: The Making of an American Icon,Jerry Oppenheimer,2002,
+jerry_seinfield,biography,Jerry Seinfeld: Much Ado About Nothing,Josh Levine,1993,
+arnold_schwarzenegger,autobiography,Total Recall: My Unbelievably True Life Story,,2012,
+arnold_schwarzenegger,biography,Arnold: An Unauthorized Biography,Wendy Leigh,1990,
+arnold_schwarzenegger,biography,Fantastic: The Life of Arnold Schwarzenegger,Laurence Leamer,2005,
+arnold_schwarzenegger,biography,Arnold Schwarzenegger: A Biography,Louise Krasniewicz & Michael Blitz,2006,OL8024304W
+sheila_johnson,autobiography,Walk Through Fire,,2023,OL39204928W
+sheila_johnson,biography,Sheila Johnson: Biography of the First Black Woman Billionaire and How She Co-founded BET,Chronicle Crafters,2023,
+tyler_perry,autobiography,Higher Is Waiting,,2017,OL19730998W
+tyler_perry,biography,Tyler Perry: A Biography of a Movie Mogul,Marty Gitlin,2014,
+tyler_perry,biography,Tyler Perry: Media Mogul,C.L. Laney,2022,
+lebron_james,autobiography,Shooting Stars,,2009,OL13777001W
+lebron_james,biography,LeBron,Jeff Benedict,2023,OL28419516W
+lebron_james,biography,LeBron James: A Biography,Lew Freedman,2008,OL27332098W
+lebron_james,biography,Who Is LeBron James?,Crystal Hubbard,2023,OL28075647W
+lebron_james,biography,LeBron James: A Little Golden Book Biography,Shasta Clinch,2024,
+tiger_woods,biography,Tiger Woods,Jeff Benedict & Armen Keteyian,2018,OL19742644W
+tiger_woods,biography,Tiger: A Biography of Tiger Woods,John Strege,1997,OL9486064W
+tiger_woods,biography,Tiger Woods: A Biography,Bill Gutman,1997,OL31225372W
+tiger_woods,biography,"Tiger, Tiger",James Patterson & Peter de Jonge,2024,OL37617630W
+tiger_woods,biography,Drive: The Lasting Legacy of Tiger Woods,Bob Harig,2024,
+magic_johnson,autobiography,"Magic (1983), My Life",,1992,
+magic_johnson,biography,"Magic: The Life of Earvin ""Magic"" Johnson",Roland Lazenby,2023,
+kimbal_musk,biography,"Kimbal Musk Biography: Exploration of Exemplary Journey through Innovation, Philanthropy and Culinary Prowess",Jennifer Bright,2023,
+jared_kushner,autobiography,Breaking History,,2022,OL34058216W
+jared_kushner,biography,"Kushner, Inc.: Greed. Ambition. Corruption. The Extraordinary Story of Jared Kushner and Ivanka Trump",Vicky Ward,2019,OL28154059W
+steven_witkoff,biography,Steve Witkoff: A Life,Daniel Lohr,2025,
+kenny_troutt,biography,The Excel Phenomenon,James W. Robinson,1997,OL2685440W
+john_paul_dejoria,biography,John Paul Dejoria: From the Backseat to Billionaire,Michael Andrews,2015,
+clark_hunt,biography,Lamar Hunt: A Life in Sports,Michael MacCambridge,2012,
+clark_hunt,biography,Lamar Hunt: The Gentle Giant Who Revolutionized Professional Sports,David A.F. Sweet,2010,
+clark_hunt,biography,Kingdom: The Story of the Hunt Family of Texas,Jerome Tuccille,2004,
+sharron_hunt,biography,Kingdom: The Story of the Hunt Family of Texas,Jerome Tuccille,2004,
+donald_sterling,biography,Donald Sterling Is Right White World Cultures Racist,Dan Knight,2014,OL40395399W
+donald_sterling,biography,Donald Sterling and the Culture of White Supremacy,Dan Knight,2014,OL41730591W
+david_velez,biography,Nubank Purple Revolution: The Story Behind the Fintech That Transformed Banking,Jorge Livingstone,2024,
+howard_schultz,autobiography,"Pour Your Heart Into It (1997), Onward (2011), From the Ground Up",,2019,
+howard_schultz,biography,Howard Schultz: A Biography of the Starbucks Billionaire,James Perry,2018,
+howard_schultz,biography,Howard Schultz: Biography The Starbucks Billionaire,Thomas Stewart,2020,
+shari_redstone,biography,Unscripted: The Epic Battle for a Media Empire and the Redstone Family Legacy,James B. Stewart & Rachel Abrams,2023,
+shari_redstone,biography,"The King of Content: Sumner Redstone's Battle for Viacom, CBS, and Everlasting Control of His Media Empire",Keach Hagey,2018,
+satya_nadella,autobiography,Hit Refresh: The Quest to Rediscover Microsoft's Soul and Imagine a Better Future for Everyone,,2017,
+brian_roberts,biography,"Comcasted: How Ralph and Brian Roberts Took Over America's TV, One Deal at a Time",Joseph N. DiStefano,2005,
+haim_saban,biography,Fame: Haim Saban — The Visionary Behind Power Rangers,Darren G. Davis,2025,
+reid_hoffman,biography,Reid Hoffman and LinkedIn,Ann Byers,2013,OL19987524W
+tim_cook,biography,Tim Cook,Amy Hayes,2017,OL28382335W
+tim_cook,biography,Zen of Tim Cook,Ron Galloway,2015,OL34045159W
+tim_cook,biography,Apple's Leadership Strategies. Steve Jobs and Tim Cook,Kemmy Jose,2014,OL36692969W
+marc_andreessen,biography,Marc Andreessen and Jim Clark,Simone Payment,2006,OL34346473W
+marc_andreessen,biography,Marc Andreessen and the development of the Web browser,Sandra Lee Gaines,2007,OL1828253W
+william_koch,biography,Sons of Wichita: How the Koch Brothers Became America's Most Powerful and Private Dynasty,Daniel Schulman,2014,
+max_levchin,biography,The Founders: The Story of PayPal and the Entrepreneurs Who Shaped Silicon Valley,Jimmy Soni,2022,
+bobby_kotick,biography,"Play Nice: The Rise, Fall, and Future of Blizzard Entertainment",Jason Schreier,2024,
+bob_iger,autobiography,The Ride of a Lifetime,,2019,OL20140592W
+bill_gurley,biography,eBoys: The First Inside Account of Venture Capitalists at Work,Randall E. Stross,2000,
+chase_koch,biography,Sons of Wichita: How the Koch Brothers Became America's Most Powerful and Private Dynasty,Daniel Schulman,2014,
+elizabeth_koch,biography,Sons of Wichita: How the Koch Brothers Became America's Most Powerful and Private Dynasty,Daniel Schulman,2014,
+jennifer_gilbert,autobiography,I Never Promised You a Goodie Bag,,2012,OL16679958W
+hansjoerg_wyss,biography,The Art of Impact: Action Principles for a World in Crisis from the Extraordinary Life of Hansjorg Wyss,Paul Orzulak and Seth Schulman,2025,
+james_packer,biography,Who Wants to Be a Billionaire?: The James Packer Story,Paul Barry,2009,
+james_packer,biography,The Price of Fortune: The Untold Story of Being James Packer,Damon Kitney,2018,
+leon_cooperman,autobiography,From The Bronx To Wall Street: My Fifty Years in Finance and Philanthropy,,2023,
+william_wrigley_jr,biography,William Wrigley Jr.,Joanne Mattern,2015,OL27451682W
+william_wrigley_jr,biography,"William Wrigley, Jr. and the Founder of Wrigley's Chewing Gum (Lives and Times (Des Plaines, Ill.).)",M. C. Hall,2005,OL8111832W
+sean_parker,biography,Sean Parker: A Visionary's Journey in Technology and Beyond,Kalyani Mookherji,2016,
+joe_shoen,autobiography,You & Me - The Rest Of the Story,,2023,OL27871910W
+joe_shoen,biography,"Birthright: Murder, Greed, and Power in the U-Haul Family Dynasty",Ronald J. Watkins,1993,
+jerry_yang,biography,Jerry Yang,Paul Kupperberg,2009,OL5722689W
+jerry_yang,biography,Jerry Yang and David Filo,Chris Hayhurst,2007,OL5817983W
+michael_s_smith,biography,Michael S. Smith,Diane Dorrans Saeks,2005,OL14962505W
+craig_mccaw,biography,"Money from Thin Air: The Story of Craig McCaw, the Visionary Who Invented the Cell Phone Industry, and His Next Billion-Dollar Idea",O. Casey Corr,2000,
+wayne_rothbaum,biography,"For Blood and Money: Billionaires, Biotech, and the Quest for a Blockbuster Drug",Nathan Vardi,2023,
+adam_neumann,biography,Billion Dollar Loser: The Epic Rise and Spectacular Fall of Adam Neumann and WeWork,Reeves Wiedeman,2020,
+jamie_dimon,biography,The House of Dimon: How JPMorgan's Jamie Dimon Rose to the Top of the Financial World,Patricia Crisafulli,2009,OL17784339W
+ted_turner,autobiography,Call Me Ted,,2008,OL3802703W
+ted_turner,biography,Ted Turner,Michael O'Connor,2010,OL18570859W
+ted_turner,biography,"Ted Turner, television's triumphant tiger",Rebecca Stefoff,1992,OL15036256W
+ted_turner,biography,Search for Ted Turner,Howard Kirby,2015,OL29079066W
+charles_bronfman,autobiography,"Distilled: A Memoir of Family, Seagram, Baseball, and Philanthropy",,2016,
+charles_bronfman,biography,Bronfman Dynasty: The Rothschilds of the New World,Peter C. Newman,1978,
+tom_ford,biography,Tom Ford,Sunny Chanday,2021,OL36150024W
+tom_ford,biography,Tom Ford 002,Shawn Shawn Sithomas,2021,OL31050645W
+tom_ford,biography,Little Book of Tom Ford,Kristen Bateman,2024,OL37831079W
+steve_case,autobiography,The Third Wave: An Entrepreneur's Vision of the Future,,2016,
+steve_case,biography,"Fools Rush In: Steve Case, Jerry Levin, and the Unmaking of AOL Time Warner",Nina Munk,2004,
+steve_case,biography,"Stealing Time: Steve Case, Jerry Levin, and the Collapse of AOL Time Warner",Alec Klein,2003,
+daniel_lubetzky,autobiography,Do the KIND Thing,,2015,OL20004404W
+sheryl_sandberg,autobiography,Lean In,,2013,OL20030361W
+sheryl_sandberg,biography,Sheryl Sandberg: COO of Facebook and Founder of the Lean In Movement,Amy Pettinella,2014,
+willis_j_johnson,autobiography,Junk to Gold,,2014,OL26765956W
+linda_pritzker,autobiography,Why Is the Dalai Lama Always Smiling?,,2015,OL21090973W
+avram_glazer,biography,The Glazer Gatekeeper: Six Years' Speaking for Manchester United's Silent Owners,Tehsin Nayani,2015,
+avram_glazer,biography,"The World's Biggest Cash Machine: Manchester United, the Glazers, and the Struggle for Football's Soul",Chris Blackhurst,2023,
+avram_glazer,biography,Manchester Disunited: Trouble and Takeover at the World's Richest Football Club,Mihir Bose,2007,
+bryan_glazer,biography,The Glazer Gatekeeper: Six Years' Speaking for Manchester United's Silent Owners,Tehsin Nayani,2015,
+bryan_glazer,biography,"The World's Biggest Cash Machine: Manchester United, the Glazers, and the Struggle for Football's Soul",Chris Blackhurst,2023,
+bryan_glazer,biography,Manchester Disunited: Trouble and Takeover at the World's Richest Football Club,Mihir Bose,2007,
+darcie_glazer_kassewitz,biography,The Glazer Gatekeeper: Six Years' Speaking for Manchester United's Silent Owners,Tehsin Nayani,2015,
+darcie_glazer_kassewitz,biography,"The World's Biggest Cash Machine: Manchester United, the Glazers, and the Struggle for Football's Soul",Chris Blackhurst,2023,
+darcie_glazer_kassewitz,biography,Manchester Disunited: Trouble and Takeover at the World's Richest Football Club,Mihir Bose,2007,
+edir_macedo,autobiography,Nothing to Lose,,2013,OL18174462W
+edir_macedo,biography,O Bispo: A História Revelada de Edir Macedo,Douglas Tavolaro & Christina Lemos,2007,
+edward_glazer,biography,The Glazer Gatekeeper: Six Years' Speaking for Manchester United's Silent Owners,Tehsin Nayani,2015,
+edward_glazer,biography,"The World's Biggest Cash Machine: Manchester United, the Glazers, and the Struggle for Football's Soul",Chris Blackhurst,2023,
+edward_glazer,biography,Manchester Disunited: Trouble and Takeover at the World's Richest Football Club,Mihir Bose,2007,
+evan_williams,biography,"Evan Williams, Biz Stone, Jack Dorsey, and Twitter",Mary-Lane Kamberg,2013,OL16461768W
+joel_glazer,biography,The Glazer Gatekeeper: Six Years' Speaking for Manchester United's Silent Owners,Tehsin Nayani,2015,
+joel_glazer,biography,"The World's Biggest Cash Machine: Manchester United, the Glazers, and the Struggle for Football's Soul",Chris Blackhurst,2023,
+joel_glazer,biography,Manchester Disunited: Trouble and Takeover at the World's Richest Football Club,Mihir Bose,2007,
+kevin_glazer,biography,The Glazer Gatekeeper: Six Years' Speaking for Manchester United's Silent Owners,Tehsin Nayani,2015,
+kevin_glazer,biography,"The World's Biggest Cash Machine: Manchester United, the Glazers, and the Struggle for Football's Soul",Chris Blackhurst,2023,
+kevin_glazer,biography,Manchester Disunited: Trouble and Takeover at the World's Richest Football Club,Mihir Bose,2007,
+tim_draper,biography,Tim Draper,Wendy Roxin Wicks,2014,OL21083298W
+lloyd_blankfein,autobiography,Streetwise: Getting to and Through Goldman Sachs,,2026,
+martha_macmillan,biography,"The Cargill-MacMillan Family Story: A Comprehensive Biography of Vision, Growth, and Influence in Global Agriculture",Ben White,2024,
+william_macmillan,biography,"The Cargill-MacMillan Family Story: A Comprehensive Biography of Vision, Growth, and Influence in Global Agriculture",Ben White,2024,
+jim_mckelvey,autobiography,The Innovation Stack: Building an Unbeatable Business One Crazy Idea at a Time,,2020,
+michael_steinhardt,autobiography,No Bull: My Life In and Out of Markets,,2001,
+ronald_perelman,biography,When Money Is King: How Revlon's Ron Perelman Mastered the World of Finance to Create One of America's Greatest Business Empires,Richard Hack,1996,
+jimmy_rane,biography,The Life and Legacy of Jimmy Rane: A Visionary Entrepreneur's Climb to the Top,Michael D. Maloy,2023,
+marissa_mayer,biography,Marissa Mayer,Sara Green,2015,OL23186018W
+marissa_mayer,biography,Marissa Mayer and the Fight to Save Yahoo!,Nicholas Carlson,2015,OL17080406W
+mark_pincus,biography,Mark Pincus and Zynga,Sarah Machajewski,2014,OL22641328W
+nicole_shanahan,biography,Who Is Nicole Shanahan?: Untold Facts About Sergey Brin's Wife,Independent Baltic Press,2022,
+nicole_shanahan,biography,The Nicole Shanahan Story: The Remarkable Journey of a Female Philanthropist,Khloe G. Owen,2024,
+laurence_fink,biography,The Larry Fink Biography: A Visionary Leader in the World of Finance,Michael D. Maloy,2023,
+laurence_fink,biography,Larry Fink The CEO of BlackRock: Reshaping Finance,Victoria Biograft,2023,
+lauren_leichtman,biography,The Blueprint of Lauren Leichtman: A Deep Look into the Rise of a Female Titan in Private Equity,Damon K. Morr,2025,
+michael_krasny,autobiography,Off Mike: A Memoir of Talk Radio and Literary Life,,2007,
+ron_shaich,autobiography,Know What Matters: Lessons from a Lifetime of Transformations,,2023,
+gary_tharaldson,biography,Open Secrets of Success: The Gary Tharaldson Story,Patrick J. McCloskey,2017,
+michele_kang,biography,Michele Kang: Breaking Barriers in Global Football Ownership,Lisa J. Curry,2024,
+michele_kang,biography,"Michele Kang: Inspiring Vision, Empowering Change",Liza M. Roach,2024,
+michele_kang,biography,Michele Kang: Pioneering Healthcare Innovation,Benny M. Williams,2024,
+nicholas_woodman,biography,GoPro Inventor Nick Woodman,Matt Doeden,2015,OL21100828W
+theresia_gouw,biography,Alpha Girls: The Women Upstarts Who Took On Silicon Valley's Male Culture and Made the Deals of a Lifetime,Julian Guthrie,2019,
+bill_cummings,autobiography,Starting Small and Making It Big,,2018,OL31827278W
+dick_portillo,autobiography,Out of the Dog House,,2018,OL20172168W
+greg_abel,biography,"Biography of Greg Abel: Berkshire's Future, and the Legacy of Warren Buffett",Rose D. Erdman,2025,
+greg_abel,biography,The Rise of Greg Abel: A Visionary's Journey to the Pinnacle of American Business,Maxine Brooks,2025,
+larry_silverstein,autobiography,The Rising,,2024,OL62979W
+larry_silverstein,biography,Larry Silverstein: The Man Behind the New World Trade Center,Cindy C. Wilson,2025,
+shayne_coplan,biography,Shayne Coplan: The Visionary Behind Polymarket,Lila Jauregui,2025,
