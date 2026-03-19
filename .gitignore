@@ -5,6 +5,12 @@ _debug/
 etl/source/edgar/xbrl/
 etl/source/edgar/proxy/
 
+# Forbes profile JSONs (re-downloadable via update_source_forbes.py --profiles)
+etl/source/forbes/profiles/
+
+# Open Library work metadata (re-downloadable via update_source_books.py)
+etl/source/books/ol/
+
 # Tempfiles of OSX/Win
 Thumbs.db
 .DS_Store
